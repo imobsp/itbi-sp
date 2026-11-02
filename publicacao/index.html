@@ -90,6 +90,11 @@ a { color: inherit; }
 .avancado input[type="number"] { width: 100%; border: 1px solid var(--line); border-radius: 8px; padding: 7px 9px; background: var(--card); font-size: 14px; }
 .avancado .limpar { border: 1px solid var(--line); background: var(--card); border-radius: 10px; padding: 8px 14px; cursor: pointer; white-space: nowrap; align-self: end; }
 .avancado .limpar:hover { background: var(--soft); }
+.av-rodape { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 14px; }
+.av-contagem { margin: 0; font-size: 14px; color: var(--muted); }
+.av-contagem strong { color: var(--ink); font-size: 20px; font-weight: 700; }
+.av-ok { background: var(--accent); color: #fff; border: 0; border-radius: 10px; padding: 11px 24px; font: 600 15px var(--sans); cursor: pointer; }
+.av-ok:hover { filter: brightness(.94); }
 @media (max-width: 760px) { .avancado { grid-template-columns: 1fr; } }
 .campo-box.periodo { height: 58px; min-height: 58px; padding: 6px 14px; justify-content: center; gap: 3px; flex: 2 1 380px; }
 .campo-box.periodo .per-topo { line-height: 1.1; }
@@ -185,6 +190,8 @@ a { color: inherit; }
 .rodape-lista { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
 .linha-t.clicavel { cursor: pointer; border-radius: 8px; }
 .linha-t.clicavel:hover { background: var(--soft); }
+.linha-t small.ver-det { display: block; color: var(--accent); font-size: 12px; font-weight: 600; margin-top: 3px; white-space: nowrap; }
+.linha-t.clicavel:hover small.ver-det { text-decoration: underline; }
 .linha-t:first-of-type { border-top: 0; }
 .linha-t small { display: block; color: var(--muted); font-size: 12px; }
 .linha-t .valor { text-align: right; font-variant-numeric: tabular-nums; }
@@ -323,11 +330,23 @@ a { color: inherit; }
 .modal-corpo .voltar { margin: 16px 0 4px; border: 1px solid var(--line); background: var(--card); border-radius: 10px; padding: 7px 12px; font: 13px var(--sans); cursor: pointer; color: var(--accent); }
 .tab-lista { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
 .tab-lista th { position: sticky; top: 0; background: var(--card); text-align: left; font-weight: 600; color: var(--muted); padding: 10px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
-.tab-lista td { padding: 9px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.tab-lista td { padding: 9px 8px; border-bottom: 1px solid var(--line); vertical-align: top; min-width: 0; }
+.tab-lista td small { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; line-height: 1.35; }
+.tab-lista td:nth-child(2) { min-width: 180px; }
 .tab-lista td.n, .tab-lista th.n { text-align: right; }
 .tab-lista tbody tr { cursor: pointer; }
 .tab-lista tbody tr:hover, .tab-lista tbody tr:focus { background: var(--soft); outline: none; }
 .tab-wrap { overflow-x: auto; }
+@media (max-width: 760px) {
+  .tab-lista thead { display: none; }
+  .tab-lista, .tab-lista tbody, .tab-lista tr, .tab-lista td { display: block; width: 100%; }
+  .tab-lista tr { border-bottom: 1px solid var(--line); padding: 10px 2px; }
+  .tab-lista td { border: 0; padding: 3px 0; text-align: left !important; display: flex; justify-content: space-between; gap: 12px; }
+  .tab-lista td::before { content: attr(data-label); color: var(--muted); font-size: 12px; flex: 0 0 auto; }
+  .tab-lista td[data-label="Endereço"], .tab-lista td[data-label="Transação"] { display: block; }
+  .tab-lista td[data-label="Endereço"]::before, .tab-lista td[data-label="Transação"]::before { display: block; margin-bottom: 1px; }
+  .tab-lista td small { margin-top: 0; }
+}
 .modal-corpo .unid { margin-top: 10px; }
 @media (max-width: 760px) { .modal { padding: 0; } .modal-caixa { max-height: 100vh; height: 100vh; border-radius: 0; } }
 @media (max-width: 760px) { .mapa-col { aspect-ratio: auto; min-height: 420px; } }
@@ -364,6 +383,48 @@ a { color: inherit; }
 }
 .mapa-limpar { position: absolute; top: 72px; left: 14px; z-index: 4; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; font: 600 13px var(--sans); color: var(--accent); cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
 .mapa-limpar[hidden] { display: none; }
+
+/* variação de imóveis retomados */
+.btn-var { width: 100%; margin: 0; border: 0; border-radius: 12px; padding: 12px 16px; background: var(--accent); color: #fff; font: 600 15px var(--sans); cursor: pointer; text-align: left; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.btn-var:hover { filter: brightness(.94); }
+.btn-var small { font-weight: 400; opacity: .9; font-size: 13px; }
+.variacao .modal-corpo { padding-top: 16px; }
+.variacao .intro { margin: 0 0 14px; color: var(--muted); font-size: 14px; }
+.variacao .modal-caixa { max-width: 1120px; }
+.var-resumo { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 10px; }
+.var-resumo .acento { color: var(--accent); font-size: 26px; }
+.var-resumo > div { background: var(--soft); border-radius: 12px; padding: 10px 12px; }
+.var-resumo .l { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.var-resumo .v { font-size: 18px; font-weight: 600; margin-top: 3px; }
+.var-aviso { font-size: 12px; color: var(--muted); margin: 0 0 16px; }
+.var-busca-wrap { position: relative; }
+.var-sugs { position: absolute; top: 46px; left: 0; right: 0; background: var(--card); border: 1px solid var(--line); border-radius: 10px; list-style: none; margin: 0; padding: 4px; max-height: 320px; overflow: auto; box-shadow: 0 8px 24px rgba(0,0,0,.12); z-index: 20; }
+.var-sugs li { padding: 8px 10px; border-radius: 8px; cursor: pointer; font-size: 14px; }
+.var-sugs li:hover, .var-sugs li:focus { background: var(--soft); outline: none; }
+.var-sugs small { display: block; color: var(--muted); font-size: 12px; }
+#var-busca { width: 100%; height: 42px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); padding: 0 14px; font: 15px var(--sans); color: var(--ink); box-sizing: border-box; margin-bottom: 6px; }
+#var-busca:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.var-contagem { font-size: 13px; color: var(--muted); margin: 0 0 12px; }
+.var-lista { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.var-item { border: 1px solid var(--line); border-radius: 12px; padding: 12px; background: var(--card); min-width: 0; }
+.var-item h3 { font: 600 15px var(--sans); margin: 0; }
+.var-item .sub { color: var(--muted); font-size: 12px; margin-top: 2px; }
+.var-badges { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+.var-badges span { font-size: 12px; border-radius: 999px; padding: 3px 9px; background: var(--soft); }
+.var-badges .pos { background: #e3f3ea; color: #14663a; }
+.var-badges .neg { background: #fbe9e7; color: #9b2c1f; }
+.var-badges .tempo { background: #eef0f4; color: #3b4a5c; }
+.var-graf { width: 100%; height: auto; margin-top: 8px; display: block; }
+.var-graf text { font-size: 10px; fill: var(--muted); paint-order: stroke; stroke: var(--card); stroke-width: 4px; stroke-linejoin: round; }
+.var-graf .pt { fill: var(--accent); }
+.var-graf .ln { fill: none; stroke: var(--accent); stroke-width: 2; }
+.var-pag { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px; margin: 16px 0 4px; }
+.var-pag button { min-width: 38px; height: 38px; padding: 0 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--ink); font: 600 14px var(--sans); cursor: pointer; }
+.var-pag button:hover:not(:disabled) { background: var(--soft); }
+.var-pag button[aria-current="page"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.var-pag button:disabled { opacity: .4; cursor: default; }
+.var-pag .retic { color: var(--muted); padding: 0 2px; }
+.var-pag-info { text-align: center; font-size: 12px; color: var(--muted); margin: 14px 0 0; }
 </style>
 <script data-goatcounter="https://itbi-sp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -415,8 +476,11 @@ a { color: inherit; }
   <section class="card avancado" id="avancado" hidden>
     <div><h3>Área do imóvel</h3><div class="opcoes" id="op-area"></div></div>
     <div><h3>Valor de venda até</h3><div class="opcoes" id="op-valor"></div></div>
-    <div><h3>Tipo de transação</h3><div class="opcoes" id="op-trans"></div></div>
     <button class="limpar" id="limpar-av" type="button">Limpar filtros avançados</button>
+    <div class="av-rodape">
+      <p class="av-contagem" id="av-contagem" aria-live="polite"></p>
+      <button type="button" class="av-ok" id="av-ok">OK, ver resultados</button>
+    </div>
   </section>
 
   <div class="grade">
@@ -445,6 +509,7 @@ a { color: inherit; }
         <div class="aviso" id="mapa-aviso" hidden>Mapa de fundo indisponível nesta conexão</div>
       </div>
     </section>
+    <button type="button" class="btn-var" id="btn-var" aria-expanded="false" aria-controls="variacao-box">Variação de imóveis retomados (leilão) <small>ver →</small></button>
     <div class="info-mapa">
       <div><svg class="chk" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg><div><div class="l">Fonte</div><div class="v">Prefeitura de São Paulo · ITBI</div></div></div>
       <div><svg class="chk" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg><div><div class="l">Última atualização</div><div class="v" id="info-atual">—</div></div></div>
@@ -459,12 +524,31 @@ a { color: inherit; }
 
   <section class="card destaques" id="destaques" aria-label="Destaques do mercado"></section>
 
+  <div class="modal variacao" id="variacao-box" hidden role="dialog" aria-modal="true" aria-labelledby="var-tit">
+    <div class="modal-caixa">
+      <div class="modal-topo"><h3 id="var-tit">Variação de imóveis retomados</h3><button type="button" class="fechar" id="fechar-var" aria-label="Fechar">×</button></div>
+      <div class="modal-corpo" id="var-corpo">
+    <p class="intro">Imóveis que o banco retomou (alienação fiduciária) e que tiveram pelo menos duas vendas ou arrematações depois, no período consultado. A 1ª transação depois da retomada é, em geral, um leilão (do banco ou judicial); a valorização aparece na 2ª venda.</p>
+    <div class="var-busca-wrap">
+      <input type="search" id="var-busca" placeholder="Filtrar por bairro ou endereço (ex.: Tatuapé, Rua Itapura)" aria-label="Buscar imóveis retomados por bairro ou endereço" autocomplete="off">
+      <ul class="var-sugs" id="var-sugs" hidden></ul>
+    </div>
+    <p class="var-contagem" id="var-contagem"></p>
+    <div class="var-resumo" id="var-resumo"></div>
+    <p class="var-aviso">O valor da retomada pode não ser o de mercado. Os gráficos mostram o valor total de cada transação; os percentuais de variação usam R$/m², com as vendas que têm área e preço plausíveis. Amostra pequena: confira cada imóvel antes de tirar conclusões.</p>
+    <div class="var-lista" id="var-lista"></div>
+    <p class="var-pag-info" id="var-pag-info"></p>
+    <nav class="var-pag" id="var-pag" aria-label="Páginas de imóveis retomados"></nav>
+      </div>
+    </div>
+  </div>
+
   <section class="card avisos" aria-label="Avisos gerais">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
     <ul>
       <li>Os valores são os declarados nas transações de ITBI e não representam necessariamente o valor atual de mercado de um imóvel.</li>
       <li><b>Possível distorção do R$/m²:</b> a área declarada no ITBI pode somar a área comum à privativa em condomínios, e a base de IPTU não traz a área privativa. Por isso o R$/m² pode estar subestimado ou superestimado. O valor médio por apartamento não depende dessa área, mas mistura imóveis de tamanhos diferentes. Para conferir a área, consulte a matrícula ou o memorial de incorporação.</li>
-      <li>Os dados são públicos, da Prefeitura de São Paulo, e são atualizados periodicamente. Período consultado: 02/01/2025 a 07/09/2026.</li>
+      <li>Os dados são públicos, da Prefeitura de São Paulo, e são atualizados periodicamente. Período consultado: 01/01/2025 a 07/09/2026.</li>
       <li>Estas informações são de caráter informativo e não constituem avaliação de imóvel nem recomendação de compra ou venda. Consulte um profissional qualificado.</li>
     </ul>
   </section>
@@ -486,34 +570,76 @@ a { color: inherit; }
 </main>
 
 <script src="dados.js"></script>
+<script src="tx.js"></script>
 <script src="pinos.js"></script>
 <script>
-const D_BRUTO = window.ITBI_DADOS;
-const D = { bairro: D_BRUTO.bairro, bairros: D_BRUTO.bairros, poucos: D_BRUTO.poucos, predios: [] };
-D_BRUTO.predios.forEach(a => D.predios.push({ b: D_BRUTO.bairros[a[0]], rua: a[1], numero: a[2], complemento: a[3], ref: a[4], unidade: a[5], area: a[6], valor: a[7], mediana: a[8], ultima: a[9], retomada: a[10], n: a[11], transacoes: [] }));
-D_BRUTO.tx.forEach(t => D.predios[t[0]].transacoes.push({ data: t[1], tipo: t[2], valor: t[3], preco_m2: t[4], financiado: t[5], cadastro: t[6] }));
+let D_BRUTO = window.ITBI_DADOS;
+const D = { bairro: D_BRUTO.bairro, bairros: D_BRUTO.bairros, poucos: D_BRUTO.poucos.map(i => D_BRUTO.bairros[i]), predios: [] };
+const POUCOS = new Set(D.poucos);
+// decodifica o formato compacto (colunas + dicionários + datas em dias desde 01/01/2025) na estrutura usada pelo resto da página
+(function () {
+  const B = D_BRUTO, P = B.p, T = B.t, DIAS = [], base = Date.UTC(2025, 0, 1);
+  const dia = n => DIAS[n] || (DIAS[n] = (() => { const d = new Date(base + n * 864e5); return String(d.getUTCDate()).padStart(2, "0") + "/" + String(d.getUTCMonth() + 1).padStart(2, "0") + "/" + d.getUTCFullYear(); })());
+  for (let i = 0; i < P.b.length; i++) D.predios.push({ b: B.bairros[P.b[i]], rua: B.rua[P.r[i]], numero: B.num[P.n[i]], complemento: B.comp[P.c[i]], ref: B.ref[P.f[i]], unidade: "", area: P.a[i], valor: P.v[i], mediana: P.m[i], ultima: dia(P.u[i]), retomada: P.rt[i] === 1, n: P.q[i], cadastro: P.cad[i], transacoes: [] });
+  let pi = 0;
+  for (let j = 0; j < T.d.length; j++) {
+    pi += T.p[j];
+    const p = D.predios[pi];
+    p.transacoes.push({ data: dia(T.d[j]), tipo: B.tipos[T.t[j]], valor: T.v[j], preco_m2: T.m[j] < 0 ? null : T.m[j], financiado: T.f[j] || null, cadastro: B.exc[j] !== undefined ? B.exc[j] : p.cadastro });
+  }
+})();
+D_BRUTO = null; try { window.ITBI_DADOS = null; } catch (e) {}
 const RUAS = (() => {
   const m = new Map();
   D.predios.forEach(p => { const r = m.get(p.rua) || { nome: p.rua, n: 0 }; r.n += p.n; m.set(p.rua, r); });
   return [...m.values()].map(r => ({ ...r, palavras: norm(r.nome).split(/[^a-z0-9]+/).filter(Boolean) }));
 })();
 const PINOS = window.ITBI_PINOS;
+const VARIACAO = [{"bairro":"PARQUE PERUCHE","rua":"Rua Artur De Oliveira","numero":"365","complemento":"Apto 164 E VG","transacoes":[{"data":"28/05/2025","tipo":"Retomada (banco)","valor":93563,"area":101,"m2":926},{"data":"26/08/2025","tipo":"Arrematação (leilão judicial)","valor":240000,"area":101,"m2":2376},{"data":"06/07/2026","tipo":"Venda","valor":340000,"area":101,"m2":3366}],"var_retomada":263.5,"var_leilao":41.7},{"bairro":"CONDOMINIO RESIDENCIAL","rua":"Avenida Guilherme Giorgi","numero":"840","complemento":"Ap132 E 2VG T II","transacoes":[{"data":"08/07/2025","tipo":"Retomada (banco)","valor":260000,"area":132,"m2":1970},{"data":"28/11/2025","tipo":"Arrematação (leilão judicial)","valor":345488,"area":132,"m2":2617},{"data":"30/06/2026","tipo":"Venda","valor":775000,"area":132,"m2":5871}],"var_retomada":198.0,"var_leilao":124.3},{"bairro":"V PRUDENTE","rua":"Rua Cananeia","numero":"97","complemento":"Apto 83 E VAGA","transacoes":[{"data":"27/04/2025","tipo":"Retomada (banco)","valor":200000,"area":111,"m2":1802},{"data":"19/09/2025","tipo":"Venda","valor":297450,"area":111,"m2":2680},{"data":"24/04/2026","tipo":"Venda","valor":445000,"area":111,"m2":4009}],"var_retomada":122.5,"var_leilao":49.6},{"bairro":"TORRE II JAGUARE","rua":"Rua Francisco Pedro Do Amaral","numero":"251","complemento":"Apto 62","transacoes":[{"data":"26/05/2025","tipo":"Retomada (banco)","valor":233000,"area":109,"m2":2138},{"data":"02/12/2025","tipo":"Venda","valor":413000,"area":109,"m2":3789},{"data":"17/04/2026","tipo":"Venda","valor":512500,"area":109,"m2":4702}],"var_retomada":119.9,"var_leilao":24.1},{"bairro":"","rua":"Rua Cruz Do Espirito Santo","numero":"528","complemento":"Apto 706 BLOCO 1","transacoes":[{"data":"17/02/2025","tipo":"Retomada (banco)","valor":145858,"area":50,"m2":2917},{"data":"08/09/2025","tipo":"Venda","valor":113025,"area":50,"m2":2261},{"data":"20/10/2025","tipo":"Venda","valor":264000,"area":50,"m2":5280}],"var_retomada":81.0,"var_leilao":133.5},{"bairro":"ENTRADA R MARIA BRANCA","rua":"Rua Ernesto Evans","numero":"243","complemento":"Cs 5","transacoes":[{"data":"22/05/2025","tipo":"Retomada (banco)","valor":225000,"area":77,"m2":2922},{"data":"05/02/2026","tipo":"Venda","valor":252000,"area":77,"m2":3273},{"data":"16/07/2026","tipo":"Venda","valor":390000,"area":77,"m2":5065}],"var_retomada":73.3,"var_leilao":54.8},{"bairro":"BLOCO 02","rua":"Rua Hirovo Kaminobo","numero":"980","complemento":"Apto 32","transacoes":[{"data":"20/02/2025","tipo":"Retomada (banco)","valor":150395,"area":49,"m2":3069},{"data":"20/10/2025","tipo":"Venda","valor":118465,"area":49,"m2":2418},{"data":"26/11/2025","tipo":"Venda","valor":260000,"area":49,"m2":5306}],"var_retomada":72.9,"var_leilao":119.4},{"bairro":"ACLIMACAO","rua":"Rua Jose Getulio","numero":"334","complemento":"Apto 141 E 2 VG","transacoes":[{"data":"20/03/2025","tipo":"Retomada (banco)","valor":740400,"area":230,"m2":3219},{"data":"02/06/2025","tipo":"Arrematação (leilão judicial)","valor":712853,"area":230,"m2":3099},{"data":"21/04/2026","tipo":"Venda","valor":1267500,"area":230,"m2":5511}],"var_retomada":71.2,"var_leilao":77.8},{"bairro":"","rua":"Rua Vitoria","numero":"648","complemento":"A8 APTO 801","transacoes":[{"data":"16/01/2025","tipo":"Retomada (banco)","valor":116665,"area":41,"m2":2845},{"data":"06/10/2025","tipo":"Venda","valor":125885,"area":41,"m2":3070},{"data":"15/06/2026","tipo":"Venda","valor":196000,"area":41,"m2":4780}],"var_retomada":68.0,"var_leilao":55.7},{"bairro":"TORRE 2","rua":"Rua Pires De Campos","numero":"268","complemento":"Apto 811","transacoes":[{"data":"28/02/2025","tipo":"Retomada (banco)","valor":235046,"area":78,"m2":3013},{"data":"04/09/2025","tipo":"Venda","valor":271281,"area":78,"m2":3478},{"data":"08/01/2026","tipo":"Venda","valor":385000,"area":78,"m2":4936}],"var_retomada":63.8,"var_leilao":41.9},{"bairro":"","rua":"Rua Angelo De Candia","numero":"35","complemento":"Casa D","transacoes":[{"data":"11/04/2025","tipo":"Retomada (banco)","valor":215000,"area":86,"m2":2500},{"data":"07/11/2025","tipo":"Venda","valor":214400,"area":86,"m2":2493},{"data":"27/05/2026","tipo":"Venda","valor":350000,"area":86,"m2":4070}],"var_retomada":62.8,"var_leilao":63.3},{"bairro":"SAO MIGUEL PAULISTA","rua":"Rua Benjamin Capusso","numero":"413","complemento":"Casa 54","transacoes":[{"data":"14/05/2025","tipo":"Retomada (banco)","valor":226179,"area":88,"m2":2570},{"data":"03/12/2025","tipo":"Venda","valor":201800,"area":88,"m2":2293},{"data":"19/06/2026","tipo":"Venda","valor":360000,"area":88,"m2":4091}],"var_retomada":59.2,"var_leilao":78.4},{"bairro":"PINHEIROS","rua":"Rua Alves Guimaraes","numero":"682","complemento":"Apto 142","transacoes":[{"data":"29/05/2025","tipo":"Retomada (banco)","valor":1100000,"area":215,"m2":5116},{"data":"19/08/2025","tipo":"Venda","valor":1081693,"area":215,"m2":5031},{"data":"30/04/2026","tipo":"Venda","valor":1720000,"area":215,"m2":8000}],"var_retomada":56.4,"var_leilao":59.0},{"bairro":"BL 1  PQ NOVO MUNDO","rua":"Avenida Serafim Goncalves Pereira","numero":"622","complemento":"Apto 172 E VG","transacoes":[{"data":"25/03/2025","tipo":"Retomada (banco)","valor":200000,"area":100,"m2":2000},{"data":"22/12/2025","tipo":"Venda","valor":280151,"area":100,"m2":2802},{"data":"16/03/2026","tipo":"Venda","valor":310000,"area":100,"m2":3100}],"var_retomada":55.0,"var_leilao":10.6},{"bairro":"BLOCO 2","rua":"Rua Alto Beni","numero":"110","complemento":"Apto 402 E VG","transacoes":[{"data":"27/03/2025","tipo":"Retomada (banco)","valor":192137,"area":91,"m2":2111},{"data":"12/11/2025","tipo":"Venda","valor":114839,"area":91,"m2":1262},{"data":"14/01/2026","tipo":"Venda","valor":295000,"area":91,"m2":3242}],"var_retomada":53.6,"var_leilao":156.9},{"bairro":"VILA LOURDES","rua":"Praça Amianto","numero":"30","complemento":"Bl B AP 1806","transacoes":[{"data":"16/09/2025","tipo":"Retomada (banco)","valor":205769,"area":55,"m2":3741},{"data":"24/03/2026","tipo":"Arrematação (leilão judicial)","valor":125416,"area":55,"m2":2280},{"data":"24/04/2026","tipo":"Venda","valor":304600,"area":55,"m2":5538}],"var_retomada":48.0,"var_leilao":142.9},{"bairro":"VILA LOURDES","rua":"Praça Amianto","numero":"30","complemento":"Bl C AP 1701","transacoes":[{"data":"16/09/2025","tipo":"Retomada (banco)","valor":211149,"area":57,"m2":3704},{"data":"24/03/2026","tipo":"Arrematação (leilão judicial)","valor":134905,"area":57,"m2":2367},{"data":"11/05/2026","tipo":"Venda","valor":312000,"area":57,"m2":5474}],"var_retomada":47.8,"var_leilao":131.3},{"bairro":"ITAQUERA","rua":"Rua Renzo Baldini","numero":"754","complemento":"Cs 7","transacoes":[{"data":"20/02/2025","tipo":"Retomada (banco)","valor":240000,"area":85,"m2":2824},{"data":"28/10/2025","tipo":"Venda","valor":177568,"area":85,"m2":2089},{"data":"01/07/2026","tipo":"Venda","valor":350000,"area":85,"m2":4118}],"var_retomada":45.8,"var_leilao":97.1},{"bairro":"","rua":"Rua Arroio Sarandi","numero":"93","complemento":"Apto 208","transacoes":[{"data":"12/11/2025","tipo":"Retomada (banco)","valor":184186,"area":48,"m2":3837},{"data":"13/07/2026","tipo":"Arrematação (leilão judicial)","valor":116652,"area":48,"m2":2430},{"data":"11/08/2026","tipo":"Venda","valor":265000,"area":48,"m2":5521}],"var_retomada":43.9,"var_leilao":127.2},{"bairro":"","rua":"Rua Arroio Sarandi","numero":"93","complemento":"Apto 410","transacoes":[{"data":"13/11/2025","tipo":"Retomada (banco)","valor":184219,"area":48,"m2":3838},{"data":"13/07/2026","tipo":"Arrematação (leilão judicial)","valor":116652,"area":48,"m2":2430},{"data":"11/08/2026","tipo":"Venda","valor":265000,"area":48,"m2":5521}],"var_retomada":43.9,"var_leilao":127.2},{"bairro":"","rua":"Rua Arroio Sarandi","numero":"93","complemento":"Apto 1208","transacoes":[{"data":"03/12/2025","tipo":"Retomada (banco)","valor":184357,"area":48,"m2":3841},{"data":"13/07/2026","tipo":"Arrematação (leilão judicial)","valor":106074,"area":48,"m2":2210},{"data":"07/08/2026","tipo":"Venda","valor":265000,"area":48,"m2":5521}],"var_retomada":43.7,"var_leilao":149.8},{"bairro":"","rua":"Rua Arroio Sarandi","numero":"93","complemento":"Apto 102","transacoes":[{"data":"12/12/2025","tipo":"Retomada (banco)","valor":184857,"area":48,"m2":3851},{"data":"13/07/2026","tipo":"Arrematação (leilão judicial)","valor":103704,"area":48,"m2":2161},{"data":"07/08/2026","tipo":"Venda","valor":265000,"area":48,"m2":5521}],"var_retomada":43.4,"var_leilao":155.5},{"bairro":"","rua":"Rua Arroio Sarandi","numero":"65","complemento":"Apto 57 BLOCO 2","transacoes":[{"data":"30/06/2025","tipo":"Retomada (banco)","valor":187170,"area":49,"m2":3820},{"data":"22/04/2026","tipo":"Venda","valor":132593,"area":49,"m2":2706},{"data":"21/07/2026","tipo":"Venda","valor":265000,"area":49,"m2":5408}],"var_retomada":41.6,"var_leilao":99.9},{"bairro":"","rua":"Rua Arroio Sarandi","numero":"93","complemento":"Apto 1603","transacoes":[{"data":"28/11/2025","tipo":"Retomada (banco)","valor":187292,"area":48,"m2":3902},{"data":"13/07/2026","tipo":"Arrematação (leilão judicial)","valor":116652,"area":48,"m2":2430},{"data":"21/08/2026","tipo":"Venda","valor":265000,"area":48,"m2":5521}],"var_retomada":41.5,"var_leilao":127.2},{"bairro":"BL 05","rua":"Rua Estado Do Ceara","numero":"1084","complemento":"Apto 32","transacoes":[{"data":"09/05/2025","tipo":"Retomada (banco)","valor":187777,"area":49,"m2":3832},{"data":"07/11/2025","tipo":"Venda","valor":123905,"area":49,"m2":2529},{"data":"26/12/2025","tipo":"Venda","valor":264000,"area":49,"m2":5388}],"var_retomada":40.6,"var_leilao":113.0},{"bairro":"","rua":"Rua Arroio Sarandi","numero":"93","complemento":"Apto 1610","transacoes":[{"data":"13/11/2025","tipo":"Retomada (banco)","valor":188794,"area":48,"m2":3933},{"data":"13/07/2026","tipo":"Arrematação (leilão judicial)","valor":116652,"area":48,"m2":2430},{"data":"07/08/2026","tipo":"Venda","valor":265000,"area":48,"m2":5521}],"var_retomada":40.4,"var_leilao":127.2},{"bairro":"","rua":"Avenida Aparecida Do Rio Negro","numero":"492","complemento":"Apto 1805 TORRE 2","transacoes":[{"data":"21/02/2025","tipo":"Retomada (banco)","valor":250000,"area":90,"m2":2778},{"data":"28/07/2025","tipo":"Venda","valor":251362,"area":90,"m2":2793},{"data":"22/04/2026","tipo":"Venda","valor":350000,"area":90,"m2":3889}],"var_retomada":40.0,"var_leilao":39.2},{"bairro":"VILA LOURDES","rua":"Praça Amianto","numero":"30","complemento":"Bl A AP 1106","transacoes":[{"data":"16/09/2025","tipo":"Retomada (banco)","valor":190173,"area":54,"m2":3522},{"data":"24/03/2026","tipo":"Arrematação (leilão judicial)","valor":110971,"area":54,"m2":2055},{"data":"06/05/2026","tipo":"Venda","valor":265000,"area":54,"m2":4907}],"var_retomada":39.3,"var_leilao":138.8},{"bairro":"VILA LOURDES","rua":"Praça Amianto","numero":"30","complemento":"Bl A AP 1206","transacoes":[{"data":"16/09/2025","tipo":"Retomada (banco)","valor":190188,"area":54,"m2":3522},{"data":"24/03/2026","tipo":"Arrematação (leilão judicial)","valor":123905,"area":54,"m2":2295},{"data":"04/05/2026","tipo":"Venda","valor":265000,"area":54,"m2":4907}],"var_retomada":39.3,"var_leilao":113.8},{"bairro":"BLOCO 02","rua":"Rua Hirovo Kaminobo","numero":"980","complemento":"Apto 91","transacoes":[{"data":"18/02/2025","tipo":"Retomada (banco)","valor":188980,"area":51,"m2":3705},{"data":"22/09/2025","tipo":"Venda","valor":119674,"area":51,"m2":2347},{"data":"21/10/2025","tipo":"Venda","valor":262000,"area":51,"m2":5137}],"var_retomada":38.7,"var_leilao":118.9},{"bairro":"VILA LOURDES","rua":"Praça Amianto","numero":"30","complemento":"Bl A AP 1302","transacoes":[{"data":"23/01/2026","tipo":"Retomada (banco)","valor":191136,"area":54,"m2":3540},{"data":"28/07/2026","tipo":"Arrematação (leilão judicial)","valor":118000,"area":54,"m2":2185},{"data":"26/08/2026","tipo":"Venda","valor":265000,"area":54,"m2":4907}],"var_retomada":38.6,"var_leilao":124.6},{"bairro":"","rua":"Avenida Aparecida Do Rio Negro","numero":"492","complemento":"Apto 1101 TORRE 1","transacoes":[{"data":"21/02/2025","tipo":"Retomada (banco)","valor":234870,"area":88,"m2":2669},{"data":"12/09/2025","tipo":"Venda","valor":192832,"area":88,"m2":2191},{"data":"15/01/2026","tipo":"Venda","valor":325000,"area":88,"m2":3693}],"var_retomada":38.4,"var_leilao":68.6},{"bairro":"VILA LOURDES","rua":"Praça Amianto","numero":"30","complemento":"Bl A AP 1008","transacoes":[{"data":"16/09/2025","tipo":"Retomada (banco)","valor":197327,"area":57,"m2":3462},{"data":"24/03/2026","tipo":"Arrematação (leilão judicial)","valor":113373,"area":57,"m2":1989},{"data":"20/05/2026","tipo":"Venda","valor":272000,"area":57,"m2":4772}],"var_retomada":37.8,"var_leilao":139.9},{"bairro":"VILA LOURDES","rua":"Praça Amianto","numero":"30","complemento":"Bl A AP 1601","transacoes":[{"data":"16/09/2025","tipo":"Retomada (banco)","valor":197408,"area":57,"m2":3463},{"data":"24/03/2026","tipo":"Arrematação (leilão judicial)","valor":123905,"area":57,"m2":2174},{"data":"28/05/2026","tipo":"Venda","valor":272000,"area":57,"m2":4772}],"var_retomada":37.8,"var_leilao":119.5},{"bairro":"VILA LOURDES","rua":"Praça Amianto","numero":"30","complemento":"Bl B AP 1501","transacoes":[{"data":"16/09/2025","tipo":"Retomada (banco)","valor":194824,"area":57,"m2":3418},{"data":"24/03/2026","tipo":"Arrematação (leilão judicial)","valor":132971,"area":57,"m2":2333},{"data":"30/04/2026","tipo":"Venda","valor":267000,"area":57,"m2":4684}],"var_retomada":37.0,"var_leilao":100.8},{"bairro":"","rua":"Avenida Do Guaca","numero":"445","complemento":"Apto 118 E VG 11AN","transacoes":[{"data":"12/09/2025","tipo":"Retomada (banco)","valor":303000,"area":104,"m2":2913},{"data":"03/02/2026","tipo":"Venda","valor":251918,"area":104,"m2":2422},{"data":"27/05/2026","tipo":"Venda","valor":415000,"area":104,"m2":3990}],"var_retomada":37.0,"var_leilao":64.7},{"bairro":"","rua":"Rua Arroio Sarandi","numero":"93","complemento":"Apto 109","transacoes":[{"data":"12/11/2025","tipo":"Retomada (banco)","valor":187376,"area":48,"m2":3904},{"data":"13/07/2026","tipo":"Arrematação (leilão judicial)","valor":111816,"area":48,"m2":2330},{"data":"07/08/2026","tipo":"Venda","valor":256181,"area":48,"m2":5337}],"var_retomada":36.7,"var_leilao":129.1},{"bairro":"","rua":"Avenida Aparecida Do Rio Negro","numero":"492","complemento":"Apto 204 TORRE 1","transacoes":[{"data":"03/04/2025","tipo":"Retomada (banco)","valor":235534,"area":88,"m2":2677},{"data":"30/01/2026","tipo":"Venda","valor":199999,"area":88,"m2":2273},{"data":"10/03/2026","tipo":"Venda","valor":320000,"area":88,"m2":3636}],"var_retomada":35.8,"var_leilao":60.0},{"bairro":"","rua":"Rua Tomoichi Shimizu","numero":"400","complemento":"Apto 107 -TORRE 3","transacoes":[{"data":"12/08/2025","tipo":"Retomada (banco)","valor":218206,"area":64,"m2":3409},{"data":"24/03/2026","tipo":"Arrematação (leilão judicial)","valor":134784,"area":64,"m2":2106},{"data":"07/05/2026","tipo":"Venda","valor":295000,"area":64,"m2":4609}],"var_retomada":35.2,"var_leilao":118.9},{"bairro":"ED PORTAL DOS PASSAROS","rua":"Rua Inacio De Barros Accioly","numero":"57","complemento":"Apto 42 E VAGA","transacoes":[{"data":"10/11/2025","tipo":"Retomada (banco)","valor":215000,"area":92,"m2":2337},{"data":"08/04/2026","tipo":"Venda","valor":95000,"area":92,"m2":1033},{"data":"26/08/2026","tipo":"Venda","valor":290000,"area":92,"m2":3152}],"var_retomada":34.9,"var_leilao":205.1},{"bairro":"PIRITUBA","rua":"Rua Tacoativa","numero":"190","complemento":"","transacoes":[{"data":"19/02/2025","tipo":"Retomada (banco)","valor":395000,"area":90,"m2":4389},{"data":"09/08/2025","tipo":"Venda","valor":170000,"area":90,"m2":1889},{"data":"29/07/2026","tipo":"Venda","valor":530000,"area":90,"m2":5889}],"var_retomada":34.2,"var_leilao":211.8},{"bairro":"BLOCO 4","rua":"Avenida Adriano Bertozzi","numero":"700","complemento":"Apto 43","transacoes":[{"data":"28/02/2025","tipo":"Retomada (banco)","valor":198265,"area":49,"m2":4046},{"data":"13/10/2025","tipo":"Venda","valor":120883,"area":49,"m2":2467},{"data":"26/11/2025","tipo":"Venda","valor":264000,"area":49,"m2":5388}],"var_retomada":33.2,"var_leilao":118.4},{"bairro":"SAO MIGUEL PAULISTA","rua":"Avenida Nordestina","numero":"2780","complemento":"Apto 806 TORRE 2","transacoes":[{"data":"03/04/2025","tipo":"Retomada (banco)","valor":198713,"area":61,"m2":3258},{"data":"20/03/2026","tipo":"Arrematação (leilão judicial)","valor":153344,"area":61,"m2":2514},{"data":"11/05/2026","tipo":"Venda","valor":264000,"area":61,"m2":4328}],"var_retomada":32.8,"var_leilao":72.2},{"bairro":"BLOCO 5","rua":"Rua Forte Da Ribeira","numero":"250","complemento":"Apto 15","transacoes":[{"data":"09/05/2025","tipo":"Retomada (banco)","valor":204883,"area":50,"m2":4098},{"data":"12/11/2025","tipo":"Venda","valor":123905,"area":50,"m2":2478},{"data":"15/12/2025","tipo":"Venda","valor":270000,"area":50,"m2":5400}],"var_retomada":31.8,"var_leilao":117.9},{"bairro":"ITAIM PAULISTA","rua":"Rua Carmine Monetti","numero":"1280","complemento":"Apto 3 BL 02","transacoes":[{"data":"17/01/2025","tipo":"Retomada (banco)","valor":173126,"area":64,"m2":2705},{"data":"08/10/2025","tipo":"Venda","valor":103704,"area":64,"m2":1620},{"data":"26/02/2026","tipo":"Venda","valor":228000,"area":64,"m2":3562}],"var_retomada":31.7,"var_leilao":119.9},{"bairro":"VL FORMOSA","rua":"Rua Argonautas","numero":"310","complemento":"Apto 61 E 3VGS","transacoes":[{"data":"03/06/2025","tipo":"Retomada (banco)","valor":642000,"area":320,"m2":2006},{"data":"10/10/2025","tipo":"Venda","valor":347400,"area":320,"m2":1086},{"data":"30/04/2026","tipo":"Venda","valor":845000,"area":320,"m2":2641}],"var_retomada":31.7,"var_leilao":143.2},{"bairro":"","rua":"Rua Tomoichi Shimizu","numero":"400","complemento":"Apto 502 -TORRE 3","transacoes":[{"data":"11/06/2025","tipo":"Retomada (banco)","valor":229527,"area":72,"m2":3188},{"data":"14/01/2026","tipo":"Venda","valor":125487,"area":72,"m2":1743},{"data":"27/02/2026","tipo":"Venda","valor":302000,"area":72,"m2":4194}],"var_retomada":31.6,"var_leilao":140.6},{"bairro":"","rua":"Avenida Nordestina","numero":"2800","complemento":"Apto 407 TORRE 2","transacoes":[{"data":"02/04/2025","tipo":"Retomada (banco)","valor":198861,"area":57,"m2":3489},{"data":"20/01/2026","tipo":"Venda","valor":132971,"area":57,"m2":2333},{"data":"07/07/2026","tipo":"Venda","valor":260000,"area":57,"m2":4561}],"var_retomada":30.7,"var_leilao":95.5},{"bairro":"","rua":"Avenida Nordestina","numero":"2800","complemento":"Apto 1610 TORRE 1","transacoes":[{"data":"03/04/2025","tipo":"Retomada (banco)","valor":191127,"area":51,"m2":3748},{"data":"08/01/2026","tipo":"Venda","valor":159000,"area":51,"m2":3118},{"data":"27/02/2026","tipo":"Venda","valor":249000,"area":51,"m2":4882}],"var_retomada":30.3,"var_leilao":56.6},{"bairro":"","rua":"Rua Agrim Sugaya","numero":"1200","complemento":"Apto 93 TORRE 4","transacoes":[{"data":"12/08/2025","tipo":"Retomada (banco)","valor":211930,"area":49,"m2":4325},{"data":"24/03/2026","tipo":"Arrematação (leilão judicial)","valor":117891,"area":49,"m2":2406},{"data":"20/05/2026","tipo":"Venda","valor":275000,"area":49,"m2":5612}],"var_retomada":29.8,"var_leilao":133.3},{"bairro":"","rua":"Rua Jose Gines","numero":"295","complemento":"Apto 44 BL4","transacoes":[{"data":"28/02/2025","tipo":"Retomada (banco)","valor":173828,"area":52,"m2":3343},{"data":"24/09/2025","tipo":"Venda","valor":112078,"area":52,"m2":2155},{"data":"14/04/2026","tipo":"Venda","valor":225000,"area":52,"m2":4327}],"var_retomada":29.4,"var_leilao":100.8},{"bairro":"","rua":"Rua Tomoichi Shimizu","numero":"400","complemento":"Apto 406 -TORRE 1","transacoes":[{"data":"22/01/2026","tipo":"Retomada (banco)","valor":232292,"area":72,"m2":3226},{"data":"21/07/2026","tipo":"Arrematação (leilão judicial)","valor":159199,"area":72,"m2":2211},{"data":"27/08/2026","tipo":"Venda","valor":300000,"area":72,"m2":4167}],"var_retomada":29.2,"var_leilao":88.5},{"bairro":"BLOCO H CJ RES","rua":"Avenida Parada Pinto","numero":"745","complemento":"Apto 63 E VAGA","transacoes":[{"data":"15/04/2025","tipo":"Retomada (banco)","valor":310229,"area":92,"m2":3372},{"data":"27/10/2025","tipo":"Venda","valor":222501,"area":92,"m2":2418},{"data":"24/08/2026","tipo":"Venda","valor":400000,"area":92,"m2":4348}],"var_retomada":28.9,"var_leilao":79.8},{"bairro":"","rua":"Rua Tomoichi Shimizu","numero":"400","complemento":"Apto 402 -TORRE 1","transacoes":[{"data":"12/08/2025","tipo":"Retomada (banco)","valor":230241,"area":72,"m2":3198},{"data":"24/03/2026","tipo":"Arrematação (leilão judicial)","valor":144381,"area":72,"m2":2005},{"data":"02/06/2026","tipo":"Venda","valor":295000,"area":72,"m2":4097}],"var_retomada":28.1,"var_leilao":104.3},{"bairro":"BLOCO 2","rua":"Rua Forte Da Ribeira","numero":"250","complemento":"Apto 44","transacoes":[{"data":"07/03/2025","tipo":"Retomada (banco)","valor":203368,"area":50,"m2":4067},{"data":"26/11/2025","tipo":"Venda","valor":142037,"area":50,"m2":2841},{"data":"19/01/2026","tipo":"Venda","valor":260000,"area":50,"m2":5200}],"var_retomada":27.9,"var_leilao":83.0},{"bairro":"LOTE 23","rua":"Avenida Aparecida Do Rio Negro","numero":"435","complemento":"Apto 1807 -TORRE 1","transacoes":[{"data":"24/02/2025","tipo":"Retomada (banco)","valor":250389,"area":87,"m2":2878},{"data":"29/10/2025","tipo":"Venda","valor":222384,"area":87,"m2":2556},{"data":"29/01/2026","tipo":"Venda","valor":320000,"area":87,"m2":3678}],"var_retomada":27.8,"var_leilao":43.9},{"bairro":"TORRE II","rua":"Rua Henrique Casela","numero":"50","complemento":"Apto 01","transacoes":[{"data":"12/03/2025","tipo":"Retomada (banco)","valor":233624,"area":84,"m2":2781},{"data":"29/10/2025","tipo":"Venda","valor":131158,"area":84,"m2":1561},{"data":"22/07/2026","tipo":"Venda","valor":297500,"area":84,"m2":3542}],"var_retomada":27.4,"var_leilao":126.9},{"bairro":"","rua":"Rua Agrim Sugaya","numero":"1200","complemento":"Apto 98 TORRE 3","transacoes":[{"data":"13/08/2025","tipo":"Retomada (banco)","valor":216852,"area":51,"m2":4252},{"data":"23/03/2026","tipo":"Venda","valor":140828,"area":51,"m2":2761},{"data":"25/06/2026","tipo":"Venda","valor":275000,"area":51,"m2":5392}],"var_retomada":26.8,"var_leilao":95.3},{"bairro":"","rua":"Rua Agrim Sugaya","numero":"1200","complemento":"Apto 84 TORRE 2","transacoes":[{"data":"31/10/2025","tipo":"Retomada (banco)","valor":217252,"area":51,"m2":4260},{"data":"06/05/2026","tipo":"Arrematação (leilão judicial)","valor":126927,"area":51,"m2":2489},{"data":"14/07/2026","tipo":"Venda","valor":275000,"area":51,"m2":5392}],"var_retomada":26.6,"var_leilao":116.6},{"bairro":"BLOCO 2","rua":"Avenida Adriano Bertozzi","numero":"700","complemento":"Apto 54","transacoes":[{"data":"09/05/2025","tipo":"Retomada (banco)","valor":201673,"area":50,"m2":4033},{"data":"07/11/2025","tipo":"Venda","valor":119244,"area":50,"m2":2385},{"data":"17/12/2025","tipo":"Venda","valor":255000,"area":50,"m2":5100}],"var_retomada":26.5,"var_leilao":113.8},{"bairro":"EDIFICIO 1","rua":"Rua Forte Do Triunfo","numero":"361","complemento":"Apto 136 E 1 VG","transacoes":[{"data":"09/09/2025","tipo":"Retomada (banco)","valor":237340,"area":93,"m2":2552},{"data":"11/03/2026","tipo":"Venda","valor":162000,"area":93,"m2":1742},{"data":"23/06/2026","tipo":"Venda","valor":300000,"area":93,"m2":3226}],"var_retomada":26.4,"var_leilao":85.2},{"bairro":"","rua":"Rua Joaquim Nunes Teixeira","numero":"200","complemento":"Apto 903 TORRE 2","transacoes":[{"data":"19/02/2025","tipo":"Retomada (banco)","valor":213718,"area":58,"m2":3685},{"data":"20/10/2025","tipo":"Venda","valor":168384,"area":58,"m2":2903},{"data":"14/04/2026","tipo":"Venda","valor":270000,"area":58,"m2":4655}],"var_retomada":26.3,"var_leilao":60.4},{"bairro":"TORRE A   COND CENTRAL","rua":"Rua Con Vicente Miguel Marino","numero":"179","complemento":"Apto 225 E VG","transacoes":[{"data":"11/04/2025","tipo":"Retomada (banco)","valor":365000,"area":86,"m2":4244},{"data":"07/07/2025","tipo":"Arrematação (leilão judicial)","valor":307723,"area":86,"m2":3578},{"data":"11/03/2026","tipo":"Venda","valor":460000,"area":86,"m2":5349}],"var_retomada":26.0,"var_leilao":49.5},{"bairro":"","rua":"Rua Agrim Sugaya","numero":"1200","complemento":"Apto 57 TORRE 4","transacoes":[{"data":"31/03/2025","tipo":"Retomada (banco)","valor":209505,"area":49,"m2":4276},{"data":"08/12/2025","tipo":"Venda","valor":106667,"area":49,"m2":2177},{"data":"26/03/2026","tipo":"Venda","valor":264000,"area":49,"m2":5388}],"var_retomada":26.0,"var_leilao":147.5},{"bairro":"","rua":"Rua Agrim Sugaya","numero":"1200","complemento":"Apto 107 TORRE 3","transacoes":[{"data":"25/02/2025","tipo":"Retomada (banco)","valor":209701,"area":49,"m2":4280},{"data":"06/01/2026","tipo":"Venda","valor":132971,"area":49,"m2":2714},{"data":"07/05/2026","tipo":"Venda","valor":264000,"area":49,"m2":5388}],"var_retomada":25.9,"var_leilao":98.5},{"bairro":"TORRE 4","rua":"Rua Agrim Sugaya","numero":"391","complemento":"Apto 133 E 1VG","transacoes":[{"data":"14/03/2025","tipo":"Retomada (banco)","valor":218628,"area":129,"m2":1695},{"data":"25/10/2025","tipo":"Venda","valor":167000,"area":129,"m2":1295},{"data":"05/12/2025","tipo":"Venda","valor":275000,"area":129,"m2":2132}],"var_retomada":25.8,"var_leilao":64.6},{"bairro":"BLOCO 1","rua":"Rua Agrim Sugaya","numero":"1210","complemento":"Apto 102","transacoes":[{"data":"24/02/2025","tipo":"Retomada (banco)","valor":210107,"area":49,"m2":4288},{"data":"02/12/2025","tipo":"Venda","valor":139015,"area":49,"m2":2837},{"data":"19/02/2026","tipo":"Venda","valor":264000,"area":49,"m2":5388}],"var_retomada":25.7,"var_leilao":89.9},{"bairro":"PALMAS DO TREMEMBE","rua":"Rua Messina","numero":"231","complemento":"Lt 29 QD 10","transacoes":[{"data":"21/01/2025","tipo":"Retomada (banco)","valor":1450000,"area":292,"m2":4966},{"data":"23/07/2025","tipo":"Arrematação (leilão judicial)","valor":850000,"area":292,"m2":2911},{"data":"29/10/2025","tipo":"Venda","valor":1800000,"area":292,"m2":6164}],"var_retomada":24.1,"var_leilao":111.7},{"bairro":"","rua":"Rua Doutor Luiz Migliano","numero":"761","complemento":"Apto 184 E 2 VG","transacoes":[{"data":"14/04/2025","tipo":"Retomada (banco)","valor":554043,"area":259,"m2":2139},{"data":"16/10/2025","tipo":"Venda","valor":618195,"area":259,"m2":2387},{"data":"02/06/2026","tipo":"Venda","valor":687000,"area":259,"m2":2653}],"var_retomada":24.0,"var_leilao":11.1},{"bairro":"VL CARLOS DE CAMPOS","rua":"Rua Sebastiao Mariano","numero":"60","complemento":"Apto 24 E VAGA","transacoes":[{"data":"14/03/2025","tipo":"Retomada (banco)","valor":295071,"area":126,"m2":2342},{"data":"09/09/2025","tipo":"Venda","valor":397680,"area":126,"m2":3156},{"data":"12/06/2026","tipo":"Venda","valor":365000,"area":126,"m2":2897}],"var_retomada":23.7,"var_leilao":-8.2},{"bairro":"BUTANTA","rua":"Rua Eng Pedro Garcin","numero":"191","complemento":"Apto 203","transacoes":[{"data":"07/03/2025","tipo":"Retomada (banco)","valor":268526,"area":96,"m2":2797},{"data":"17/10/2025","tipo":"Venda","valor":185465,"area":96,"m2":1932},{"data":"09/03/2026","tipo":"Venda","valor":330000,"area":96,"m2":3438}],"var_retomada":22.9,"var_leilao":78.0},{"bairro":"IPIRANGA","rua":"Rua Manifesto","numero":"2707","complemento":"Apto 126 E 1 VG","transacoes":[{"data":"12/02/2025","tipo":"Retomada (banco)","valor":355000,"area":88,"m2":4034},{"data":"01/05/2025","tipo":"Venda","valor":216600,"area":88,"m2":2461},{"data":"28/01/2026","tipo":"Venda","valor":435000,"area":88,"m2":4943}],"var_retomada":22.5,"var_leilao":100.9},{"bairro":"","rua":"Rua Agrim Sugaya","numero":"1200","complemento":"Apto 35 TORRE 4","transacoes":[{"data":"13/08/2025","tipo":"Retomada (banco)","valor":216852,"area":51,"m2":4252},{"data":"27/02/2026","tipo":"Arrematação (leilão judicial)","valor":123300,"area":51,"m2":2418},{"data":"18/05/2026","tipo":"Venda","valor":265000,"area":51,"m2":5196}],"var_retomada":22.2,"var_leilao":114.9},{"bairro":"TORRE B","rua":"Rua Francisco Rossano","numero":"110","complemento":"Apto 162","transacoes":[{"data":"09/05/2025","tipo":"Retomada (banco)","valor":235728,"area":74,"m2":3186},{"data":"28/11/2025","tipo":"Venda","valor":176956,"area":74,"m2":2391},{"data":"16/07/2026","tipo":"Venda","valor":288000,"area":74,"m2":3892}],"var_retomada":22.2,"var_leilao":62.8},{"bairro":"BLOCO 3","rua":"Rua Agrim Sugaya","numero":"1210","complemento":"Apto 76","transacoes":[{"data":"24/02/2025","tipo":"Retomada (banco)","valor":210023,"area":49,"m2":4286},{"data":"20/10/2025","tipo":"Venda","valor":111816,"area":49,"m2":2282},{"data":"25/11/2025","tipo":"Venda","valor":256000,"area":49,"m2":5224}],"var_retomada":21.9,"var_leilao":128.9},{"bairro":"","rua":"Rua Cruz Do Espirito Santo","numero":"528","complemento":"Apto 4 BLOCO 2","transacoes":[{"data":"21/02/2025","tipo":"Retomada (banco)","valor":215810,"area":52,"m2":4150},{"data":"17/12/2025","tipo":"Venda","valor":117861,"area":52,"m2":2267},{"data":"13/03/2026","tipo":"Venda","valor":260000,"area":52,"m2":5000}],"var_retomada":20.5,"var_leilao":120.6},{"bairro":"","rua":"Rua Salvador Pedroso","numero":"255","complemento":"Apto 215 E VG","transacoes":[{"data":"03/12/2025","tipo":"Retomada (banco)","valor":377973,"area":94,"m2":4021},{"data":"20/05/2026","tipo":"Venda","valor":271345,"area":94,"m2":2887},{"data":"28/08/2026","tipo":"Venda","valor":455000,"area":94,"m2":4840}],"var_retomada":20.4,"var_leilao":67.6},{"bairro":"CONDOMINIO VILLAGIO","rua":"Avenida Professor Miguel Franchini Neto","numero":"65","complemento":"Casa 02","transacoes":[{"data":"26/02/2025","tipo":"Retomada (banco)","valor":249290,"area":116,"m2":2149},{"data":"23/10/2025","tipo":"Venda","valor":160000,"area":116,"m2":1379},{"data":"06/03/2026","tipo":"Venda","valor":300000,"area":116,"m2":2586}],"var_retomada":20.3,"var_leilao":87.5},{"bairro":"BLOCO B","rua":"Avenida Jurema","numero":"200","complemento":"Apto 173","transacoes":[{"data":"14/02/2025","tipo":"Retomada (banco)","valor":2370000,"area":231,"m2":10260},{"data":"30/09/2025","tipo":"Venda","valor":738045,"area":231,"m2":3195},{"data":"24/02/2026","tipo":"Venda","valor":2850000,"area":231,"m2":12338}],"var_retomada":20.3,"var_leilao":286.2},{"bairro":"","rua":"Rua Cruz Do Espirito Santo","numero":"528","complemento":"Apto 203 BLOCO 3","transacoes":[{"data":"21/02/2025","tipo":"Retomada (banco)","valor":208738,"area":50,"m2":4175},{"data":"13/10/2025","tipo":"Venda","valor":94815,"area":50,"m2":1896},{"data":"27/02/2026","tipo":"Venda","valor":250000,"area":50,"m2":5000}],"var_retomada":19.8,"var_leilao":163.7},{"bairro":"","rua":"Rua Santo Henrique","numero":"648","complemento":"Apto 106","transacoes":[{"data":"19/05/2025","tipo":"Retomada (banco)","valor":192953,"area":48,"m2":4020},{"data":"01/12/2025","tipo":"Venda","valor":130509,"area":48,"m2":2719},{"data":"01/07/2026","tipo":"Venda","valor":230000,"area":48,"m2":4792}],"var_retomada":19.2,"var_leilao":76.2},{"bairro":"LOTE 7","rua":"Avenida Aparecida Do Rio Negro","numero":"334","complemento":"Apto 703 -TORRE 2","transacoes":[{"data":"04/06/2025","tipo":"Retomada (banco)","valor":252161,"area":88,"m2":2865},{"data":"09/12/2025","tipo":"Venda","valor":178301,"area":88,"m2":2026},{"data":"08/04/2026","tipo":"Venda","valor":300000,"area":88,"m2":3409}],"var_retomada":19.0,"var_leilao":68.3},{"bairro":"","rua":"Rua Santa Amelia","numero":"190","complemento":"Apto 34 BLOCO 2","transacoes":[{"data":"19/06/2025","tipo":"Retomada (banco)","valor":218969,"area":51,"m2":4294},{"data":"24/03/2026","tipo":"Arrematação (leilão judicial)","valor":126927,"area":51,"m2":2489},{"data":"12/06/2026","tipo":"Venda","valor":260000,"area":51,"m2":5098}],"var_retomada":18.7,"var_leilao":104.8},{"bairro":"JD. ADELFIORE","rua":"Rua Dedalion","numero":"576","complemento":"Apto 403 TA","transacoes":[{"data":"14/01/2025","tipo":"Retomada (banco)","valor":246128,"area":65,"m2":3787},{"data":"09/10/2025","tipo":"Venda","valor":171446,"area":65,"m2":2638},{"data":"02/06/2026","tipo":"Venda","valor":290000,"area":65,"m2":4462}],"var_retomada":17.8,"var_leilao":69.1},{"bairro":"","rua":"Rua Nsra Das Merces","numero":"867","complemento":"Apto 46 E VG","transacoes":[{"data":"10/02/2025","tipo":"Retomada (banco)","valor":410000,"area":112,"m2":3661},{"data":"09/08/2025","tipo":"Venda","valor":315000,"area":112,"m2":2812},{"data":"02/04/2026","tipo":"Venda","valor":480000,"area":112,"m2":4286}],"var_retomada":17.1,"var_leilao":52.4},{"bairro":"VILA MATILDE","rua":"Praça Nsra Da Anunciacao","numero":"80","complemento":"Apto 63 E VG","transacoes":[{"data":"20/03/2025","tipo":"Retomada (banco)","valor":299000,"area":84,"m2":3560},{"data":"17/06/2025","tipo":"Venda","valor":260000,"area":84,"m2":3095},{"data":"12/11/2025","tipo":"Venda","valor":350000,"area":84,"m2":4167}],"var_retomada":17.1,"var_leilao":34.6},{"bairro":"","rua":"Rua Afonso Pena","numero":"352","complemento":"Apto 23","transacoes":[{"data":"21/01/2025","tipo":"Retomada (banco)","valor":300000,"area":103,"m2":2913},{"data":"25/08/2025","tipo":"Venda","valor":236340,"area":103,"m2":2295},{"data":"22/10/2025","tipo":"Venda","valor":350000,"area":103,"m2":3398}],"var_retomada":16.6,"var_leilao":48.1},{"bairro":"PIRITUBA","rua":"Rua S Francisco De Assis","numero":"885","complemento":"Apto 35 TORRE A","transacoes":[{"data":"21/10/2025","tipo":"Retomada (banco)","valor":430446,"area":109,"m2":3949},{"data":"08/05/2026","tipo":"Venda","valor":300000,"area":109,"m2":2752},{"data":"21/07/2026","tipo":"Venda","valor":500000,"area":109,"m2":4587}],"var_retomada":16.2,"var_leilao":66.7},{"bairro":"","rua":"Rua Cruz Do Espirito Santo","numero":"528","complemento":"Apto 1005 BLOCO 1","transacoes":[{"data":"21/02/2025","tipo":"Retomada (banco)","valor":215659,"area":52,"m2":4147},{"data":"30/09/2025","tipo":"Venda","valor":112421,"area":52,"m2":2162},{"data":"03/12/2025","tipo":"Venda","valor":250000,"area":52,"m2":4808}],"var_retomada":15.9,"var_leilao":122.4},{"bairro":"TORRE 2","rua":"Rua Ator Paulo Gustavo","numero":"177","complemento":"Apto 1302","transacoes":[{"data":"26/03/2025","tipo":"Retomada (banco)","valor":250351,"area":82,"m2":3053},{"data":"05/12/2025","tipo":"Venda","valor":146590,"area":82,"m2":1788},{"data":"30/03/2026","tipo":"Venda","valor":290000,"area":82,"m2":3537}],"var_retomada":15.9,"var_leilao":97.8},{"bairro":"JD LOURDES","rua":"Rua Deborah Pascoal","numero":"51","complemento":"Pt LT 14 QD 8 A","transacoes":[{"data":"19/02/2025","tipo":"Retomada (banco)","valor":445000,"area":129,"m2":3450},{"data":"17/12/2025","tipo":"Venda","valor":270000,"area":129,"m2":2093},{"data":"18/08/2026","tipo":"Venda","valor":513000,"area":129,"m2":3977}],"var_retomada":15.3,"var_leilao":90.0},{"bairro":"TORRE 2","rua":"Rua Da Mooca","numero":"1300","complemento":"Apto 211","transacoes":[{"data":"04/11/2025","tipo":"Retomada (banco)","valor":263367,"area":51,"m2":5164},{"data":"06/04/2026","tipo":"Venda","valor":172548,"area":51,"m2":3383},{"data":"30/07/2026","tipo":"Venda","valor":300000,"area":51,"m2":5882}],"var_retomada":13.9,"var_leilao":73.9},{"bairro":"TORRE A","rua":"Avenida Cangaiba","numero":"3734","complemento":"Apto 109","transacoes":[{"data":"27/02/2025","tipo":"Retomada (banco)","valor":217996,"area":53,"m2":4113},{"data":"12/12/2025","tipo":"Venda","valor":137202,"area":53,"m2":2589},{"data":"22/05/2026","tipo":"Venda","valor":246000,"area":53,"m2":4642}],"var_retomada":12.9,"var_leilao":79.3},{"bairro":"TORRE 1","rua":"Rua Agrim Sugaya","numero":"391","complemento":"Apto 126 E 1VG","transacoes":[{"data":"26/03/2025","tipo":"Retomada (banco)","valor":265893,"area":150,"m2":1773},{"data":"11/11/2025","tipo":"Venda","valor":159329,"area":150,"m2":1062},{"data":"07/05/2026","tipo":"Venda","valor":300000,"area":150,"m2":2000}],"var_retomada":12.8,"var_leilao":88.3},{"bairro":"TORRE B","rua":"Rua Sabbado D'Angelo","numero":"281","complemento":"Apto 1010","transacoes":[{"data":"17/02/2025","tipo":"Retomada (banco)","valor":234137,"area":41,"m2":5711},{"data":"22/09/2025","tipo":"Venda","valor":146485,"area":41,"m2":3573},{"data":"16/01/2026","tipo":"Venda","valor":264000,"area":41,"m2":6439}],"var_retomada":12.7,"var_leilao":80.2},{"bairro":"","rua":"Rua S Mauro","numero":"115","complemento":"","transacoes":[{"data":"30/06/2025","tipo":"Retomada (banco)","valor":2317000,"area":349,"m2":6639},{"data":"28/10/2025","tipo":"Venda","valor":1440000,"area":349,"m2":4126},{"data":"05/01/2026","tipo":"Venda","valor":2600000,"area":349,"m2":7450}],"var_retomada":12.2,"var_leilao":80.6},{"bairro":"BLOCO 1","rua":"Estrada Dos Mirandas","numero":"315","complemento":"Apto 55","transacoes":[{"data":"30/10/2025","tipo":"Retomada (banco)","valor":232016,"area":57,"m2":4070},{"data":"27/04/2026","tipo":"Venda","valor":138653,"area":57,"m2":2433},{"data":"19/06/2026","tipo":"Venda","valor":260000,"area":57,"m2":4561}],"var_retomada":12.1,"var_leilao":87.5},{"bairro":"TORRE B","rua":"Rua Victorio Santim","numero":"2776","complemento":"Apto 1701","transacoes":[{"data":"16/05/2025","tipo":"Retomada (banco)","valor":195320,"area":42,"m2":4650},{"data":"20/10/2025","tipo":"Arrematação (leilão judicial)","valor":114839,"area":42,"m2":2734},{"data":"15/06/2026","tipo":"Venda","valor":217000,"area":42,"m2":5167}],"var_retomada":11.1,"var_leilao":89.0},{"bairro":"VILA CURUCA","rua":"Rua Mario Masini","numero":"128","complemento":"Apto 22 E VG","transacoes":[{"data":"06/10/2025","tipo":"Retomada (banco)","valor":226872,"area":78,"m2":2909},{"data":"16/03/2026","tipo":"Venda","valor":127000,"area":78,"m2":1628},{"data":"05/06/2026","tipo":"Venda","valor":250000,"area":78,"m2":3205}],"var_retomada":10.2,"var_leilao":96.9},{"bairro":"TORRE 2","rua":"Rua Adherbal Stresser","numero":"247","complemento":"Apto 406","transacoes":[{"data":"10/09/2025","tipo":"Retomada (banco)","valor":254406,"area":77,"m2":3304},{"data":"12/02/2026","tipo":"Venda","valor":172464,"area":77,"m2":2240},{"data":"12/06/2026","tipo":"Venda","valor":280000,"area":77,"m2":3636}],"var_retomada":10.0,"var_leilao":62.3},{"bairro":"","rua":"Rua Carlos Petit","numero":"215","complemento":"Apto 709","transacoes":[{"data":"23/10/2025","tipo":"Retomada (banco)","valor":501407,"area":49,"m2":10233},{"data":"12/12/2025","tipo":"Arrematação (leilão judicial)","valor":273620,"area":49,"m2":5584},{"data":"23/06/2026","tipo":"Venda","valor":550000,"area":49,"m2":11224}],"var_retomada":9.7,"var_leilao":101.0},{"bairro":"TORRE 1","rua":"Rua Tomoichi Shimizu","numero":"440","complemento":"Apto 1704","transacoes":[{"data":"09/04/2025","tipo":"Retomada (banco)","valor":238940,"area":75,"m2":3186},{"data":"02/10/2025","tipo":"Arrematação (leilão judicial)","valor":146953,"area":75,"m2":1959},{"data":"20/07/2026","tipo":"Venda","valor":258000,"area":75,"m2":3440}],"var_retomada":8.0,"var_leilao":75.6},{"bairro":"TORRE A","rua":"Rua Junqueira Freire","numero":"231","complemento":"Apto 57","transacoes":[{"data":"21/02/2025","tipo":"Retomada (banco)","valor":250408,"area":61,"m2":4105},{"data":"28/11/2025","tipo":"Venda","valor":237406,"area":61,"m2":3892},{"data":"28/11/2025","tipo":"Venda","valor":269000,"area":61,"m2":4410}],"var_retomada":7.4,"var_leilao":13.3},{"bairro":"","rua":"Rua Joao De Meira","numero":"151","complemento":"","transacoes":[{"data":"25/07/2025","tipo":"Retomada (banco)","valor":254932,"area":60,"m2":4249},{"data":"11/11/2025","tipo":"Venda","valor":280000,"area":60,"m2":4667},{"data":"11/11/2025","tipo":"Venda","valor":273192,"area":60,"m2":4553}],"var_retomada":7.2,"var_leilao":-2.4},{"bairro":"VILA ROMANA","rua":"Rua Tito","numero":"19","complemento":"Apto 32 DP E VGS","transacoes":[{"data":"04/06/2025","tipo":"Retomada (banco)","valor":2534476,"area":310,"m2":8176},{"data":"11/12/2025","tipo":"Venda","valor":1710000,"area":310,"m2":5516},{"data":"31/07/2026","tipo":"Venda","valor":2700000,"area":310,"m2":8710}],"var_retomada":6.5,"var_leilao":57.9},{"bairro":"","rua":"Rua Ziba","numero":"200","complemento":"Apto 125","transacoes":[{"data":"19/05/2025","tipo":"Retomada (banco)","valor":251254,"area":65,"m2":3865},{"data":"04/11/2025","tipo":"Arrematação (leilão judicial)","valor":139015,"area":65,"m2":2139},{"data":"07/04/2026","tipo":"Venda","valor":266000,"area":65,"m2":4092}],"var_retomada":5.9,"var_leilao":91.3},{"bairro":"BLOCO 6 ED KHIOS","rua":"Rua Arthur Soter Lopes Da Silva","numero":"88","complemento":"Apto 94 E VAGA","transacoes":[{"data":"06/03/2025","tipo":"Retomada (banco)","valor":302000,"area":91,"m2":3319},{"data":"24/07/2025","tipo":"Venda","valor":203720,"area":91,"m2":2239},{"data":"25/11/2025","tipo":"Venda","valor":320000,"area":91,"m2":3516}],"var_retomada":5.9,"var_leilao":57.0},{"bairro":"SAO MIGUEL PAULISTA","rua":"Avenida Nordestina","numero":"2780","complemento":"Apto 1412 TORRE 2","transacoes":[{"data":"26/03/2025","tipo":"Retomada (banco)","valor":251039,"area":79,"m2":3178},{"data":"15/10/2025","tipo":"Venda","valor":140180,"area":79,"m2":1774},{"data":"29/05/2026","tipo":"Venda","valor":265000,"area":79,"m2":3354}],"var_retomada":5.5,"var_leilao":89.1},{"bairro":"VL ANDRADE","rua":"Rua Celso Ramos","numero":"145","complemento":"Apto 188 E 1 VG","transacoes":[{"data":"02/07/2025","tipo":"Retomada (banco)","valor":333000,"area":80,"m2":4162},{"data":"19/11/2025","tipo":"Venda","valor":290787,"area":80,"m2":3635},{"data":"18/08/2026","tipo":"Venda","valor":350000,"area":80,"m2":4375}],"var_retomada":5.1,"var_leilao":20.4},{"bairro":"","rua":"Rua Afonso Pena","numero":"580","complemento":"Apto 63 TORRE 2","transacoes":[{"data":"12/03/2025","tipo":"Retomada (banco)","valor":230948,"area":61,"m2":3786},{"data":"25/07/2025","tipo":"Venda","valor":231163,"area":61,"m2":3790},{"data":"19/01/2026","tipo":"Arrematação (leilão judicial)","valor":242000,"area":61,"m2":3967},{"data":"22/07/2026","tipo":"Venda","valor":255000,"area":61,"m2":4180}],"var_retomada":4.8,"var_leilao":4.7},{"bairro":"RESIDENCIAL PALMIERE","rua":"Rua Roque Palmieri","numero":"462","complemento":"Cs 4","transacoes":[{"data":"13/10/2025","tipo":"Retomada (banco)","valor":279000,"area":56,"m2":4982},{"data":"27/02/2026","tipo":"Venda","valor":168863,"area":56,"m2":3015},{"data":"18/06/2026","tipo":"Venda","valor":290000,"area":56,"m2":5179}],"var_retomada":4.0,"var_leilao":71.8},{"bairro":"CAMBUCI","rua":"Rua Professor Demostenes Batista F. Marques","numero":"14","complemento":"B 14 AP 406","transacoes":[{"data":"25/07/2025","tipo":"Retomada (banco)","valor":260000,"area":59,"m2":4407},{"data":"29/01/2026","tipo":"Venda","valor":172800,"area":59,"m2":2929},{"data":"03/07/2026","tipo":"Venda","valor":270000,"area":59,"m2":4576}],"var_retomada":3.8,"var_leilao":56.2},{"bairro":"TORRE 1","rua":"Avenida Alexandre Mackenzie","numero":"357","complemento":"Apto 14","transacoes":[{"data":"06/05/2025","tipo":"Retomada (banco)","valor":242024,"area":53,"m2":4566},{"data":"29/10/2025","tipo":"Venda","valor":160000,"area":53,"m2":3019},{"data":"09/04/2026","tipo":"Venda","valor":250000,"area":53,"m2":4717}],"var_retomada":3.3,"var_leilao":56.2},{"bairro":"BOM RETIRO","rua":"Rua Jaragua","numero":"737","complemento":"Apto 41 E 01 VG","transacoes":[{"data":"26/03/2025","tipo":"Retomada (banco)","valor":529553,"area":93,"m2":5694},{"data":"21/08/2025","tipo":"Arrematação (leilão judicial)","valor":415000,"area":93,"m2":4462},{"data":"17/11/2025","tipo":"Venda","valor":540400,"area":93,"m2":5811}],"var_retomada":2.1,"var_leilao":30.2},{"bairro":"T 3 ED GAIVOTA","rua":"Rua Francisco Marcondes Vieira","numero":"3","complemento":"Apto 71 E VGS","transacoes":[{"data":"26/06/2025","tipo":"Retomada (banco)","valor":892000,"area":190,"m2":4695},{"data":"17/11/2025","tipo":"Venda","valor":593615,"area":190,"m2":3124},{"data":"03/06/2026","tipo":"Venda","valor":910000,"area":190,"m2":4789}],"var_retomada":2.0,"var_leilao":53.3},{"bairro":"BUTANTA","rua":"Rua Eng Pedro Garcin","numero":"191","complemento":"Vg 49 M","transacoes":[{"data":"07/03/2025","tipo":"Retomada (banco)","valor":29836,"area":31,"m2":962},{"data":"17/10/2025","tipo":"Venda","valor":32729,"area":31,"m2":1056},{"data":"09/03/2026","tipo":"Venda","valor":30000,"area":31,"m2":968}],"var_retomada":0.6,"var_leilao":-8.3},{"bairro":"TORRE 2","rua":"Rua Da Mooca","numero":"1300","complemento":"Apto 708","transacoes":[{"data":"06/11/2025","tipo":"Retomada (banco)","valor":278420,"area":57,"m2":4885},{"data":"06/05/2026","tipo":"Venda","valor":186467,"area":57,"m2":3271},{"data":"28/07/2026","tipo":"Venda","valor":280000,"area":57,"m2":4912}],"var_retomada":0.6,"var_leilao":50.2},{"bairro":"TORRE 1","rua":"Rua Tomoichi Shimizu","numero":"440","complemento":"Apto 1303","transacoes":[{"data":"05/05/2025","tipo":"Retomada (banco)","valor":239423,"area":75,"m2":3192},{"data":"09/12/2025","tipo":"Venda","valor":149402,"area":75,"m2":1992},{"data":"08/07/2026","tipo":"Venda","valor":240000,"area":75,"m2":3200}],"var_retomada":0.3,"var_leilao":60.6},{"bairro":"","rua":"Rua Vicente Pereira De Assuncao","numero":"249","complemento":"Apto 53 E BOX","transacoes":[{"data":"20/01/2025","tipo":"Retomada (banco)","valor":400000,"area":125,"m2":3200},{"data":"03/03/2026","tipo":"Venda","valor":228420,"area":125,"m2":1827},{"data":"25/08/2026","tipo":"Venda","valor":400000,"area":125,"m2":3200}],"var_retomada":0.0,"var_leilao":75.2},{"bairro":"LAUZANE PAULISTA","rua":"Rua Tavannes","numero":"81","complemento":"Casa 34","transacoes":[{"data":"03/07/2025","tipo":"Retomada (banco)","valor":408200,"area":67,"m2":6093},{"data":"10/02/2026","tipo":"Venda","valor":247977,"area":67,"m2":3701},{"data":"30/07/2026","tipo":"Venda","valor":405000,"area":67,"m2":6045}],"var_retomada":-0.8,"var_leilao":63.3},{"bairro":"GUAIANAZES","rua":"Rua Raposo Da Fonseca","numero":"1044","complemento":"Apto 22 BL 4","transacoes":[{"data":"20/01/2025","tipo":"Retomada (banco)","valor":181624,"area":82,"m2":2215},{"data":"10/02/2026","tipo":"Venda","valor":102845,"area":82,"m2":1254},{"data":"31/03/2026","tipo":"Venda","valor":180000,"area":82,"m2":2195}],"var_retomada":-0.9,"var_leilao":75.0},{"bairro":"SANTANA","rua":"Rua Franklin Do Amaral","numero":"450","complemento":"Apto 43 TB","transacoes":[{"data":"14/01/2025","tipo":"Retomada (banco)","valor":243902,"area":72,"m2":3388},{"data":"18/06/2025","tipo":"Venda","valor":209485,"area":72,"m2":2910},{"data":"08/01/2026","tipo":"Venda","valor":240000,"area":72,"m2":3333}],"var_retomada":-1.6,"var_leilao":14.5},{"bairro":"","rua":"Rua Lourenco De Godoi","numero":"9","complemento":"Casa 04","transacoes":[{"data":"07/02/2025","tipo":"Retomada (banco)","valor":237516,"area":53,"m2":4481},{"data":"06/11/2025","tipo":"Venda","valor":137806,"area":53,"m2":2600},{"data":"21/05/2026","tipo":"Venda","valor":230000,"area":53,"m2":4340}],"var_retomada":-3.1,"var_leilao":66.9},{"bairro":"IPIRANGA","rua":"Rua Doutor Mario Vicente","numero":"226","complemento":"","transacoes":[{"data":"04/06/2025","tipo":"Retomada (banco)","valor":450000,"area":100,"m2":4500},{"data":"19/08/2025","tipo":"Venda","valor":265000,"area":100,"m2":2650},{"data":"24/11/2025","tipo":"Venda","valor":435000,"area":100,"m2":4350}],"var_retomada":-3.3,"var_leilao":64.2},{"bairro":"S MIGUEL PAULISTA","rua":"Rua Conceicao Do Castelo","numero":"87","complemento":"Cs 3","transacoes":[{"data":"27/02/2025","tipo":"Retomada (banco)","valor":280000,"area":91,"m2":3077},{"data":"08/05/2025","tipo":"Arrematação (leilão judicial)","valor":167141,"area":91,"m2":1837},{"data":"09/03/2026","tipo":"Venda","valor":270000,"area":91,"m2":2967}],"var_retomada":-3.6,"var_leilao":61.5},{"bairro":"VILA SANTA CATARINA","rua":"Rua Ttcel Antonio Braga","numero":"25","complemento":"Apto 91","transacoes":[{"data":"23/09/2025","tipo":"Retomada (banco)","valor":352092,"area":101,"m2":3486},{"data":"20/03/2026","tipo":"Venda","valor":183008,"area":101,"m2":1812},{"data":"11/06/2026","tipo":"Venda","valor":335000,"area":101,"m2":3317}],"var_retomada":-4.8,"var_leilao":83.1},{"bairro":"","rua":"Rua Rosa-Do-Campo","numero":"350","complemento":"Apto 14","transacoes":[{"data":"10/02/2025","tipo":"Retomada (banco)","valor":200000,"area":46,"m2":4348},{"data":"03/06/2025","tipo":"Venda","valor":132000,"area":46,"m2":2870},{"data":"10/07/2026","tipo":"Venda","valor":190000,"area":46,"m2":4130}],"var_retomada":-5.0,"var_leilao":43.9},{"bairro":"VL CLEONICE","rua":"Rua Mario Rodrigues","numero":"51","complemento":"","transacoes":[{"data":"06/03/2025","tipo":"Retomada (banco)","valor":421500,"area":192,"m2":2195},{"data":"29/04/2025","tipo":"Venda","valor":240000,"area":192,"m2":1250},{"data":"29/04/2026","tipo":"Venda","valor":400000,"area":192,"m2":2083}],"var_retomada":-5.1,"var_leilao":66.6},{"bairro":"","rua":"Rua Rego Barros","numero":"815","complemento":"Apto 103 - TORRE A","transacoes":[{"data":"31/03/2025","tipo":"Retomada (banco)","valor":285000,"area":75,"m2":3800},{"data":"04/09/2025","tipo":"Venda","valor":164110,"area":75,"m2":2188},{"data":"02/07/2026","tipo":"Venda","valor":270000,"area":75,"m2":3600}],"var_retomada":-5.3,"var_leilao":64.5},{"bairro":"E 2 VGS","rua":"Rua William Furneau","numero":"120","complemento":"Apto 264","transacoes":[{"data":"09/09/2025","tipo":"Retomada (banco)","valor":1300000,"area":208,"m2":6250},{"data":"05/01/2026","tipo":"Venda","valor":932891,"area":208,"m2":4485},{"data":"05/08/2026","tipo":"Venda","valor":1225000,"area":208,"m2":5889}],"var_retomada":-5.8,"var_leilao":31.3},{"bairro":"","rua":"Rua Xique-Xique","numero":"369","complemento":"","transacoes":[{"data":"07/03/2025","tipo":"Retomada (banco)","valor":600000,"area":126,"m2":4762},{"data":"09/08/2025","tipo":"Venda","valor":310000,"area":126,"m2":2460},{"data":"20/03/2026","tipo":"Venda","valor":564000,"area":126,"m2":4476}],"var_retomada":-6.0,"var_leilao":82.0},{"bairro":"TORRE 1","rua":"Rua Salvador Gianetti","numero":"201","complemento":"Apto 909","transacoes":[{"data":"13/03/2025","tipo":"Retomada (banco)","valor":165656,"area":32,"m2":5177},{"data":"06/11/2025","tipo":"Venda","valor":96000,"area":32,"m2":3000},{"data":"03/03/2026","tipo":"Venda","valor":155000,"area":32,"m2":4844}],"var_retomada":-6.4,"var_leilao":61.5},{"bairro":"","rua":"Rua Cidade De Bagda","numero":"53","complemento":"","transacoes":[{"data":"29/05/2025","tipo":"Retomada (banco)","valor":301000,"area":74,"m2":4068},{"data":"22/08/2025","tipo":"Venda","valor":253115,"area":74,"m2":3420},{"data":"14/10/2025","tipo":"Venda","valor":281400,"area":74,"m2":3803}],"var_retomada":-6.5,"var_leilao":11.2},{"bairro":"IPIRANGA","rua":"Rua Sousa Coutinho","numero":"98","complemento":"Apto 54 T2","transacoes":[{"data":"30/01/2025","tipo":"Retomada (banco)","valor":345000,"area":72,"m2":4792},{"data":"22/07/2025","tipo":"Venda","valor":190000,"area":72,"m2":2639},{"data":"25/09/2025","tipo":"Venda","valor":320000,"area":72,"m2":4444}],"var_retomada":-7.3,"var_leilao":68.4},{"bairro":"BLOCO B","rua":"Avenida Doutor Wando Henrique Cardim","numero":"190","complemento":"Apto 23 E 2VG","transacoes":[{"data":"17/02/2025","tipo":"Retomada (banco)","valor":548622,"area":171,"m2":3208},{"data":"23/06/2026","tipo":"Venda","valor":380766,"area":171,"m2":2227},{"data":"05/08/2026","tipo":"Venda","valor":504957,"area":171,"m2":2953}],"var_retomada":-7.9,"var_leilao":32.6},{"bairro":"","rua":"Rua Alfredo Pujol","numero":"159","complemento":"Apto 1505","transacoes":[{"data":"28/08/2025","tipo":"Retomada (banco)","valor":260000,"area":44,"m2":5909},{"data":"05/05/2026","tipo":"Venda","valor":238000,"area":44,"m2":5409},{"data":"04/08/2026","tipo":"Venda","valor":238000,"area":44,"m2":5409}],"var_retomada":-8.5,"var_leilao":0.0},{"bairro":"","rua":"Rua Past Miguel Damiani","numero":"37","complemento":"","transacoes":[{"data":"24/01/2025","tipo":"Retomada (banco)","valor":383390,"area":68,"m2":5638},{"data":"23/09/2025","tipo":"Venda","valor":228000,"area":68,"m2":3353},{"data":"23/02/2026","tipo":"Venda","valor":350000,"area":68,"m2":5147}],"var_retomada":-8.7,"var_leilao":53.5},{"bairro":"","rua":"Avenida S Miguel","numero":"8184","complemento":"Apto 1024","transacoes":[{"data":"04/06/2025","tipo":"Retomada (banco)","valor":230356,"area":53,"m2":4346},{"data":"04/12/2025","tipo":"Venda","valor":136716,"area":53,"m2":2580},{"data":"27/08/2026","tipo":"Venda","valor":210000,"area":53,"m2":3962}],"var_retomada":-8.8,"var_leilao":53.6},{"bairro":"","rua":"Rua Kenkiti Shimomoto","numero":"1300","complemento":"Apto 22 BLOCO 1","transacoes":[{"data":"07/05/2025","tipo":"Retomada (banco)","valor":225756,"area":49,"m2":4607},{"data":"16/01/2026","tipo":"Venda","valor":134110,"area":49,"m2":2737},{"data":"29/07/2026","tipo":"Venda","valor":205000,"area":49,"m2":4184}],"var_retomada":-9.2,"var_leilao":52.9},{"bairro":"SANTANA","rua":"Avenida Parada Pinto","numero":"2511","complemento":"Apto 96 BL2","transacoes":[{"data":"23/07/2025","tipo":"Retomada (banco)","valor":300000,"area":76,"m2":3947},{"data":"14/11/2025","tipo":"Venda","valor":110199,"area":76,"m2":1450},{"data":"04/02/2026","tipo":"Venda","valor":269208,"area":76,"m2":3542}],"var_retomada":-10.3,"var_leilao":144.3},{"bairro":"VL. PRUDENTE","rua":"Rua Giestas","numero":"186","complemento":"Apto 86","transacoes":[{"data":"26/08/2025","tipo":"Retomada (banco)","valor":476000,"area":91,"m2":5231},{"data":"06/02/2026","tipo":"Venda","valor":340000,"area":91,"m2":3736},{"data":"15/04/2026","tipo":"Venda","valor":420000,"area":91,"m2":4615}],"var_retomada":-11.8,"var_leilao":23.5},{"bairro":"BLOCO 4","rua":"Rua Marco Giannini","numero":"237","complemento":"Apto 68","transacoes":[{"data":"01/07/2025","tipo":"Retomada (banco)","valor":239747,"area":50,"m2":4795},{"data":"19/12/2025","tipo":"Venda","valor":135554,"area":50,"m2":2711},{"data":"02/02/2026","tipo":"Venda","valor":210000,"area":50,"m2":4200}],"var_retomada":-12.4,"var_leilao":54.9},{"bairro":"TORRE 5","rua":"Avenida Pres Wilson","numero":"620","complemento":"Apto 612","transacoes":[{"data":"07/03/2025","tipo":"Retomada (banco)","valor":179959,"area":34,"m2":5293},{"data":"14/02/2026","tipo":"Arrematação (leilão judicial)","valor":170833,"area":34,"m2":5024},{"data":"24/03/2026","tipo":"Venda","valor":156000,"area":34,"m2":4588}],"var_retomada":-13.3,"var_leilao":-8.7},{"bairro":"VL GRANADA","rua":"Rua Filipe Galvao","numero":"47","complemento":"Apto 31","transacoes":[{"data":"13/02/2025","tipo":"Retomada (banco)","valor":301750,"area":112,"m2":2694},{"data":"09/02/2026","tipo":"Venda","valor":191194,"area":112,"m2":1707},{"data":"29/05/2026","tipo":"Venda","valor":250000,"area":112,"m2":2232}],"var_retomada":-17.1,"var_leilao":30.8},{"bairro":"","rua":"Rua Jose Bento","numero":"410","complemento":"Apto 901","transacoes":[{"data":"03/07/2025","tipo":"Retomada (banco)","valor":267900,"area":42,"m2":6379},{"data":"07/01/2026","tipo":"Venda","valor":161000,"area":42,"m2":3833},{"data":"08/06/2026","tipo":"Venda","valor":218973,"area":42,"m2":5214}],"var_retomada":-18.3,"var_leilao":36.0},{"bairro":"TORRE B","rua":"Via Anchieta","numero":"580","complemento":"Apto 1205","transacoes":[{"data":"11/06/2025","tipo":"Retomada (banco)","valor":293392,"area":68,"m2":4315},{"data":"19/12/2025","tipo":"Venda","valor":193744,"area":68,"m2":2849},{"data":"05/05/2026","tipo":"Venda","valor":236411,"area":68,"m2":3477}],"var_retomada":-19.4,"var_leilao":22.0},{"bairro":"TORRE A - PORTAL VILA","rua":"Avenida Vila Ema","numero":"2258","complemento":"Apto 1309","transacoes":[{"data":"28/10/2025","tipo":"Retomada (banco)","valor":252909,"area":45,"m2":5620},{"data":"18/03/2026","tipo":"Venda","valor":175000,"area":45,"m2":3889},{"data":"25/06/2026","tipo":"Venda","valor":200000,"area":45,"m2":4444}],"var_retomada":-20.9,"var_leilao":14.3},{"bairro":"TORRE B","rua":"Rua Candiruacu","numero":"16","complemento":"Apto 508","transacoes":[{"data":"08/09/2025","tipo":"Retomada (banco)","valor":180743,"area":37,"m2":4885},{"data":"21/01/2026","tipo":"Arrematação (leilão judicial)","valor":143037,"area":37,"m2":3866},{"data":"16/04/2026","tipo":"Venda","valor":143037,"area":37,"m2":3866}],"var_retomada":-20.9,"var_leilao":0.0},{"bairro":"","rua":"Avenida Doutor Francisco Munhoz Filho","numero":"1497","complemento":"","transacoes":[{"data":"14/04/2025","tipo":"Retomada (banco)","valor":607785,"area":161,"m2":3775},{"data":"04/11/2025","tipo":"Venda","valor":320000,"area":161,"m2":1988},{"data":"31/03/2026","tipo":"Venda","valor":470000,"area":161,"m2":2919}],"var_retomada":-22.7,"var_leilao":46.8},{"bairro":"CJ RES VILLA BORGHESE","rua":"Rua Botelho","numero":"187","complemento":"Apto 12 E VG","transacoes":[{"data":"02/04/2025","tipo":"Retomada (banco)","valor":540000,"area":111,"m2":4865},{"data":"07/07/2025","tipo":"Venda","valor":361278,"area":111,"m2":3255},{"data":"31/10/2025","tipo":"Venda","valor":417546,"area":111,"m2":3762}],"var_retomada":-22.7,"var_leilao":15.6},{"bairro":"ACLIMACAO","rua":"Rua Jose Getulio","numero":"217","complemento":"Apto 117","transacoes":[{"data":"18/03/2025","tipo":"Retomada (banco)","valor":270000,"area":52,"m2":5192},{"data":"24/11/2025","tipo":"Arrematação (leilão judicial)","valor":200000,"area":52,"m2":3846},{"data":"28/05/2026","tipo":"Venda","valor":200000,"area":52,"m2":3846}],"var_retomada":-25.9,"var_leilao":0.0},{"bairro":"TORRE B","rua":"Rua Candiruacu","numero":"16","complemento":"Apto 104","transacoes":[{"data":"30/04/2026","tipo":"Retomada (banco)","valor":182741,"area":37,"m2":4939},{"data":"26/08/2026","tipo":"Venda","valor":135330,"area":37,"m2":3658},{"data":"26/08/2026","tipo":"Venda","valor":135330,"area":37,"m2":3658}],"var_retomada":-25.9,"var_leilao":0.0},{"bairro":"BLOCO 02","rua":"Rua Hirovo Kaminobo","numero":"980","complemento":"Apto 95","transacoes":[{"data":"16/04/2025","tipo":"Retomada (banco)","valor":189572,"area":51,"m2":3717},{"data":"05/01/2026","tipo":"Venda","valor":149402,"area":51,"m2":2929},{"data":"20/01/2026","tipo":"Venda","valor":140224,"area":51,"m2":2749}],"var_retomada":-26.0,"var_leilao":-6.1},{"bairro":"TORRE 1","rua":"Avenida Celso Garcia","numero":"6011","complemento":"Apto 312","transacoes":[{"data":"28/05/2025","tipo":"Retomada (banco)","valor":242480,"area":56,"m2":4330},{"data":"14/11/2025","tipo":"Arrematação (leilão judicial)","valor":177443,"area":56,"m2":3169},{"data":"25/11/2025","tipo":"Venda","valor":177443,"area":56,"m2":3169},{"data":"02/07/2026","tipo":"Venda","valor":275000,"area":56,"m2":4911}],"var_retomada":-26.8,"var_leilao":0.0},{"bairro":"VL ALBERTINA","rua":"Avenida Sen Jose Ermirio De Moraes","numero":"132","complemento":"Apto 9","transacoes":[{"data":"28/05/2025","tipo":"Retomada (banco)","valor":227692,"area":65,"m2":3503},{"data":"11/11/2025","tipo":"Arrematação (leilão judicial)","valor":186753,"area":65,"m2":2873},{"data":"28/05/2026","tipo":"Venda","valor":160000,"area":65,"m2":2462}],"var_retomada":-29.7,"var_leilao":-14.3},{"bairro":"","rua":"Rua Professor Bourhan Helou","numero":"210","complemento":"","transacoes":[{"data":"30/04/2025","tipo":"Retomada (banco)","valor":640000,"area":118,"m2":5424},{"data":"28/07/2025","tipo":"Arrematação (leilão judicial)","valor":98417,"area":118,"m2":834},{"data":"11/02/2026","tipo":"Venda","valor":450000,"area":118,"m2":3814}],"var_retomada":-29.7,"var_leilao":357.3},{"bairro":"TORRE 1","rua":"Avenida Mario Lopes Leao","numero":"916","complemento":"Apto 612","transacoes":[{"data":"27/05/2025","tipo":"Retomada (banco)","valor":246475,"area":45,"m2":5477},{"data":"22/01/2026","tipo":"Venda","valor":250158,"area":45,"m2":5559},{"data":"08/05/2026","tipo":"Venda","valor":169851,"area":45,"m2":3774}],"var_retomada":-31.1,"var_leilao":-32.1},{"bairro":"TORRE B - PORTAL VILA","rua":"Avenida Vila Ema","numero":"2258","complemento":"Apto 1910","transacoes":[{"data":"18/04/2025","tipo":"Retomada (banco)","valor":302323,"area":42,"m2":7198},{"data":"23/10/2025","tipo":"Venda","valor":173000,"area":42,"m2":4119},{"data":"11/08/2026","tipo":"Venda","valor":195550,"area":42,"m2":4656}],"var_retomada":-35.3,"var_leilao":13.0},{"bairro":"CD COL TOWN HOUSE","rua":"Avenida Agenor Couto De Magalhaes","numero":"330","complemento":"Resid 11","transacoes":[{"data":"08/05/2025","tipo":"Retomada (banco)","valor":837086,"area":103,"m2":8127},{"data":"10/10/2025","tipo":"Venda","valor":383252,"area":103,"m2":3721},{"data":"30/06/2026","tipo":"Venda","valor":517000,"area":103,"m2":5019}],"var_retomada":-38.2,"var_leilao":34.9},{"bairro":"TATUAPE","rua":"Rua Serra De Botucatu","numero":"151","complemento":"Apto 101 E GR","transacoes":[{"data":"20/06/2025","tipo":"Retomada (banco)","valor":900000,"area":146,"m2":6164},{"data":"07/11/2025","tipo":"Venda","valor":489740,"area":146,"m2":3354},{"data":"16/07/2026","tipo":"Venda","valor":540000,"area":146,"m2":3699}],"var_retomada":-40.0,"var_leilao":10.3},{"bairro":"","rua":"Rua Arnaldo Cintra","numero":"400","complemento":"Apto 121 - TORRE 3","transacoes":[{"data":"24/01/2025","tipo":"Retomada (banco)","valor":818354,"area":91,"m2":8993},{"data":"13/02/2025","tipo":"Arrematação (leilão judicial)","valor":230000,"area":91,"m2":2527},{"data":"30/04/2025","tipo":"Venda","valor":480000,"area":91,"m2":5275}],"var_retomada":-41.3,"var_leilao":108.7},{"bairro":"CIDADE LIDER","rua":"Rua Dias Coelho","numero":"272","complemento":"Lt. 42A","transacoes":[{"data":"14/03/2025","tipo":"Retomada (banco)","valor":325000,"area":95,"m2":3421},{"data":"17/07/2025","tipo":"Venda","valor":285800,"area":95,"m2":3008},{"data":"17/04/2026","tipo":"Venda","valor":185400,"area":95,"m2":1952}],"var_retomada":-42.9,"var_leilao":-35.1},{"bairro":"","rua":"Rua Carlos Gonzalez","numero":"109","complemento":"","transacoes":[{"data":"07/03/2025","tipo":"Retomada (banco)","valor":1211324,"area":226,"m2":5360},{"data":"02/10/2025","tipo":"Venda","valor":379722,"area":226,"m2":1680},{"data":"03/06/2026","tipo":"Venda","valor":580000,"area":226,"m2":2566}],"var_retomada":-52.1,"var_leilao":52.7},{"bairro":"","rua":"Rua Tijuco Preto","numero":"1043","complemento":"","transacoes":[{"data":"09/04/2025","tipo":"Retomada (banco)","valor":835000,"area":117,"m2":7137},{"data":"30/09/2025","tipo":"Venda","valor":72290,"area":117,"m2":618},{"data":"30/09/2025","tipo":"Venda","valor":397000,"area":117,"m2":3393},{"data":"26/02/2026","tipo":"Venda","valor":500000,"area":117,"m2":4274}],"var_retomada":-52.5,"var_leilao":449.0},{"bairro":"BL 1 TORRE FIGUEIRA","rua":"Rua Volta Redonda","numero":"270","complemento":"Apto 221 E 4 VG","transacoes":[{"data":"30/09/2025","tipo":"Retomada (banco)","valor":2320000,"area":371,"m2":6253},{"data":"27/01/2026","tipo":"Venda","valor":1537082,"area":371,"m2":4143},{"data":"27/01/2026","tipo":"Venda","valor":1068142,"area":371,"m2":2879}],"var_retomada":-54.0,"var_leilao":-30.5},{"bairro":"","rua":"Rua Joao Millam","numero":"99","complemento":"Lt 18 QD B","transacoes":[{"data":"23/09/2025","tipo":"Retomada (banco)","valor":473019,"area":100,"m2":4730},{"data":"11/03/2026","tipo":"Venda","valor":258993,"area":100,"m2":2590},{"data":"05/08/2026","tipo":"Venda","valor":200000,"area":100,"m2":2000}],"var_retomada":-57.7,"var_leilao":-22.8}];
 const BAIRRO_PINOS = "";
-const TRANS_TODAS = ["Compra e venda", "Provável leilão", "Retomada (banco)"];
-const TRANS_PADRAO = ["Compra e venda", "Provável leilão"];
 const TIPOS = ["Apartamento", "Sala, loja ou outros"];
 
 const $ = s => document.querySelector(s);
 function esc(s) { return String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
 function fmt(v) { return v == null || isNaN(v) ? "—" : "R$ " + Math.round(v).toLocaleString("pt-BR"); }
 function norm(s) { return String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase(); }
-function medianaArr(v) {
-  if (!v.length) return null;
-  const s = [...v].sort((a, b) => a - b), m = s.length >> 1;
-  return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
+// mediana: listas pequenas por inserção; listas grandes por seleção rápida (sem ordenar tudo) em Float64Array.
+// Funções separadas por tipo de lista, para o navegador conseguir otimizar cada uma.
+function seleciona(a, k) {  // a: Float64Array; devolve o k-ésimo menor (0 a n-1) e deixa à esquerda de k só valores menores ou iguais
+  let lo = 0, hi = a.length - 1;
+  while (lo < hi) {
+    const pivo = a[(lo + hi) >> 1];
+    let i = lo, j = hi;
+    while (i <= j) {
+      while (a[i] < pivo) i++;
+      while (a[j] > pivo) j--;
+      if (i <= j) { const x = a[i]; a[i] = a[j]; a[j] = x; i++; j--; }
+    }
+    if (k <= j) hi = j; else if (k >= i) lo = i; else return a[k];
+  }
+  return a[k];
 }
-function dataNum(d) { const [dd, mm, aa] = d.split("/").map(Number); return new Date(aa, mm - 1, dd).getTime(); }
-function mesDe(d) { const [, mm, aa] = d.split("/"); return aa + "-" + mm; }
+function medianaPequena(v, n) {
+  const a = v.slice();
+  for (let i = 1; i < n; i++) { const x = a[i]; let j = i - 1; while (j >= 0 && a[j] > x) { a[j + 1] = a[j]; j--; } a[j + 1] = x; }
+  const m = n >> 1;
+  return n % 2 ? a[m] : (a[m - 1] + a[m]) / 2;
+}
+function medianaArr(v) {
+  const n = v.length;
+  if (!n) return null;
+  if (n < 100) return medianaPequena(v, n);
+  const a = new Float64Array(n);
+  for (let i = 0; i < n; i++) a[i] = v[i];  // cópia em laço: Float64Array.from é lento (usa iteração)
+  const m = n >> 1, alto = seleciona(a, m);
+  if (n % 2) return alto;
+  let baixo = -Infinity;
+  for (let i = 0; i < m; i++) if (a[i] > baixo) baixo = a[i];
+  return (baixo + alto) / 2;
+}
+const _dn = new Map(), _mes = new Map();
+function dataNum(d) { let r = _dn.get(d); if (r === undefined) { const [dd, mm, aa] = d.split("/").map(Number); r = new Date(aa, mm - 1, dd).getTime(); _dn.set(d, r); } return r; }
+function mesDe(d) { let r = _mes.get(d); if (r === undefined) { const [, mm, aa] = d.split("/"); r = aa + "-" + mm; _mes.set(d, r); } return r; }
 function mesRotulo(k) { const [a, m] = k.split("-"); return m + "/" + a; }
 function somaMeses(ym, k) { const [a, m] = ym.split("-").map(Number); const t = a * 12 + (m - 1) + k; return Math.floor(t / 12) + "-" + String((t % 12) + 1).padStart(2, "0"); }
 function chaveRua(rua) { return norm(rua).replace(/^(rua|r|av|avenida|al|alameda|pca|praca|estr|estrada|trav|tv|travessa)\.?\s+/, "").replace(/[^a-z0-9]/g, ""); }
@@ -565,7 +691,6 @@ const F = {
   ini: MES_MIN, fim: MES_MAX,
   bairros: new Set(D.bairros),
   tipos: new Set(TIPOS),
-  trans: new Set(),
   valMax: null, area: null, chip: null,
   selKey: null, rua: null,
 };
@@ -573,18 +698,36 @@ const F = {
 function filtrar() {
   return FLAT.filter(x =>
     (!F.ini || x.mes >= F.ini) && (!F.fim || x.mes <= F.fim) &&
-    F.bairros.has(x.b) && F.tipos.has(x.tipoUn) && (F.trans.size === 0 || F.trans.has(x.tr)) &&
+    F.bairros.has(x.b) && F.tipos.has(x.tipoUn) &&
     (F.valMax == null || x.valor <= F.valMax) && (!F.area || areaOk(x)) && (!F.rua || x.rua === F.rua) && (!F.selKey || x.key === F.selKey));
 }
 function metricas(lista) {
-  const v = lista.filter(x => x.m2 != null);
-  const ultima = lista.reduce((a, x) => (!a || x.dnum > a.dnum ? x : a), null);
-  const vals = lista.map(x => x.valor).filter(x => x != null);
+  // uma única passada pela lista
+  const m2s = [], keys = new Set(), idxs = new Set();
+  let soma = 0, nv = 0, ultima = null;
+  for (const x of lista) {
+    if (x.m2 != null) m2s.push(x.m2);
+    if (x.valor != null) { soma += x.valor; nv++; }
+    if (!ultima || x.dnum > ultima.dnum) ultima = x;
+    keys.add(x.key); idxs.add(x.idx);
+  }
   return {
-    media: vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null,
-    mediana: medianaArr(v.map(x => x.m2)), n: lista.length, nM2: v.length,
-    predios: new Set(lista.map(x => x.key)).size, ultima: ultima ? ultima.data : "—",
+    media: nv ? soma / nv : null,
+    mediana: medianaArr(m2s), n: lista.length, nM2: m2s.length,
+    predios: keys.size, imoveis: idxs.size, ultima: ultima ? ultima.data : "—",
   };
+}
+// as k transações mais recentes, da mais nova para a mais antiga (empates mantêm a ordem original), sem ordenar a lista inteira
+function maisRecentes(lista, k) {
+  const top = [];
+  for (const x of lista) {
+    if (top.length === k && x.dnum <= top[k - 1].dnum) continue;
+    let i = top.length;
+    while (i > 0 && top[i - 1].dnum < x.dnum) i--;
+    top.splice(i, 0, x);
+    if (top.length > k) top.pop();
+  }
+  return top;
 }
 // série mensal: [mês, valor médio por apartamento, nº de transações, mediana R$/m²]
 function serie(lista) {
@@ -715,7 +858,7 @@ const fimArrasto = e => {
 };
 mapaEl.addEventListener("pointerup", fimArrasto);
 mapaEl.addEventListener("pointercancel", fimArrasto);
-mapaEl.addEventListener("wheel", e => { if (e.target.closest(".mapa-busca, #mdica")) return; e.preventDefault(); zoomPara(zoom + (e.deltaY < 0 ? 1 : -1)); }, { passive: false });
+mapaEl.addEventListener("wheel", e => { if (e.target.closest(".mapa-busca, #mdica")) return; const nz = Math.max(ZMIN, Math.min(ZMAX, zoom + (e.deltaY < 0 ? 1 : -1))); if (nz === zoom) return; e.preventDefault(); zoomPara(nz); }, { passive: false });
 $("#z-mais").addEventListener("click", () => zoomPara(zoom + 1));
 $("#z-menos").addEventListener("click", () => zoomPara(zoom - 1));
 window.addEventListener("resize", desenhar);
@@ -885,12 +1028,11 @@ function desenharPainel(lista) {
   const sel = F.selKey ? GRUPOS.get(F.selKey) : null;
   // visão geral: só o que está dentro da área visível do mapa
   const base = sel ? lista.filter(x => x.key === F.selKey) : lista.filter(x => VISIVEIS.has(x.key));
-  const naArea = !sel && new Set(lista.map(x => x.key)).size > new Set(base.map(x => x.key)).size;
+  const naArea = !sel && lista.some(x => !VISIVEIS.has(x.key));
   const m = metricas(base);
-  const ordem = [...base].sort((a, b) => b.dnum - a.dnum);
-  const ultimas = ordem.slice(0, 6).map(t => `
+  const ultimas = maisRecentes(base, 6).map(t => `
     <div class="linha-t${sel ? "" : " clicavel"}" ${sel ? "" : `data-key="${esc(t.key)}" tabindex="0"`}>
-      <span>${esc(t.data)}</span>
+      <span>${esc(t.data)}${sel ? "" : '<small class="ver-det" aria-hidden="true">Ver detalhes ›</small>'}</span>
       <span>${sel ? "" : `${esc(t.g.rua)}, ${esc(t.g.numero)}<small>`}${esc(t.unidade)}${sel ? "" : "</small>"}</span>
       <span class="area">${D.predios[t.idx].area != null ? D.predios[t.idx].area + " m²" : "—"}</span>
       <span class="valor">${fmt(t.valor)}</span>
@@ -906,8 +1048,8 @@ function desenharPainel(lista) {
        <h2>${esc(F.rua)}</h2>
        <p class="p-sub">Todas as transações da rua, com os filtros aplicados</p>`
     : `<div class="rotulo">Visão geral</div>
-       <h2>${naArea ? "Área visível no mapa" : F.bairros.size === D.bairros.length ? "Mercado de São Paulo" : "Mercado de " + esc(rotuloBairros())}</h2>
-       <p class="p-sub">${naArea ? "Imóveis dentro da área do mapa, com os filtros aplicados" : "Todos os pontos, com os filtros aplicados"}</p>`;
+       <h2>${naArea ? "Detalhes dos dados selecionados" : F.bairros.size === D.bairros.length ? "Mercado de São Paulo" : "Mercado de " + esc(rotuloBairros())}</h2>
+       <p class="p-sub">${naArea ? m.n.toLocaleString("pt-BR") + " transações nesta região do mapa, de " + lista.length.toLocaleString("pt-BR") + " com os filtros" : "Todos os pontos, com os filtros aplicados"}</p>`;
   const acoes = sel
     ? `<div class="p-acoes"><button class="btn" id="limpar-sel" type="button">Voltar ao mercado</button><a class="btn" href="#">Ver histórico completo</a></div><button type="button" class="fechar-sel" id="fechar-sel" aria-label="Fechar detalhes">×</button>`
     : F.rua
@@ -916,9 +1058,9 @@ function desenharPainel(lista) {
 
   const ultimasBloco = sel ? "" : `<div class="bloco-p">
       <h3>Últimas transações</h3>
-      ${ordem.length ? `<div class="linha-t cab"><span>Data</span><span>Endereço</span><span class="area">Área</span><span>Valor</span><span>R$/m²</span></div>` : ""}
+      ${base.length ? `<div class="linha-t cab"><span>Data</span><span>Endereço</span><span class="area">Área</span><span>Valor</span><span>R$/m²</span></div>` : ""}
       <div class="lista-t">${ultimas || '<p class="nota">Nenhuma transação com os filtros atuais.</p>'}</div>
-      ${ordem.length > 6 ? `<button type="button" class="ver-todas" data-ver-todas>Ver mais</button>` : ""}
+      ${base.length > 6 ? `<button type="button" class="ver-todas" data-ver-todas>Ver mais</button>` : ""}
     </div>`;
   $("#painel").innerHTML = `
     <div class="p-cab"><div>${cabeca}</div>${acoes}</div>
@@ -965,8 +1107,9 @@ function desenharResumo(lista) {
     <div class="grid">
       ${kpi('<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17l5-5 4 4 8-8"/><path d="M15 8h6v6"/></svg>', "Valor médio por apartamento", fmt(m.media), "Média dos valores declarados")}
       ${kpi('<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20h16M7 16V9M12 16V5M17 16v-4"/></svg>', "Mediana do R$/m²", fmt(m.mediana), "Em relação à área declarada no ITBI")}
-      ${kpi('<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg>', "Transações identificadas", m.n.toLocaleString("pt-BR"), "Conforme filtros aplicados")}
-      ${kpi('<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2"/></svg>', "Prédios com transações", m.predios.toLocaleString("pt-BR"), "Endereços agrupados")}
+      ${kpi('<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg>', "Transações (registros de ITBI)", m.n.toLocaleString("pt-BR"), "Com os filtros aplicados")}
+      ${kpi('<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2"/></svg>', "Imóveis (apartamentos)", m.imoveis.toLocaleString("pt-BR"), "Unidades com transação")}
+      ${kpi('<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-6-5.2-6-10a6 6 0 1 1 12 0c0 4.8-6 10-6 10z"/><circle cx="12" cy="11" r="2"/></svg>', "Endereços (prédios)", m.predios.toLocaleString("pt-BR"), "Rua e número distintos")}
       ${kpi('<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>', "Última atualização", esc(D.bairro.fim), "Data de referência da base")}
     </div>
     <p class="nota">Indicadores calculados a partir dos dados de ITBI carregados. Última atualização: ${esc(D.bairro.fim)}.</p>`;
@@ -975,11 +1118,11 @@ function desenharResumo(lista) {
 // mapa: pinos visíveis e cores pela faixa de preço dos filtros
 function atualizarPinos(lista) {
   const por = new Map();
-  lista.forEach(x => { if (!por.has(x.key)) por.set(x.key, []); por.get(x.key).push(x); });
+  for (const x of lista) { if (x.m2 == null) continue; const a = por.get(x.key); if (a) a.push(x.m2); else por.set(x.key, [x.m2]); }
   PINS.forEach(p => {
-    const v = (por.get(p.key) || []).filter(x => x.m2 != null).map(x => x.m2);
-    p.visivel = v.length > 0;
-    p.med = medianaArr(v);
+    const v = por.get(p.key);
+    p.visivel = !!v;
+    p.med = v ? medianaArr(v) : null;
   });
   const meds = PINS.filter(p => p.visivel).map(p => p.med).sort((a, b) => a - b);
   CORTES = Array.from({ length: 7 }, (_, k) => meds[Math.floor(meds.length * (k + 1) / 8)]);
@@ -1010,18 +1153,11 @@ function montarFiltros() {
       <input id="busca-bairro" type="search" placeholder="Buscar bairro pelo nome" aria-label="Buscar bairro pelo nome" autocomplete="off">
       <div class="pb-acoes"><button type="button" id="pb-todos">Selecionar todos</button><button type="button" id="pb-nenhum">Limpar</button></div>
     </div>
-    <div class="pb-lista" id="pb-lista">${D.bairros.map(b => `<label data-nome="${esc(norm(b))}"><input type="checkbox" value="${esc(b)}" checked> ${esc(tituloCase(b))}${D.poucos.includes(b) ? ' <small class="pouco">· poucos dados</small>' : ""}</label>`).join("")}</div>`;
+    <div class="pb-lista" id="pb-lista">${D.bairros.map(b => `<label data-nome="${esc(norm(b))}"><input type="checkbox" value="${esc(b)}" checked> ${esc(tituloCase(b))}${POUCOS.has(b) ? ' <small class="pouco">· poucos dados</small>' : ""}</label>`).join("")}</div>`;
   $("#lbl-bairro").textContent = rotuloBairros();
   $("#pop-tipo").innerHTML = TIPOS.map(t => `<label><input type="checkbox" value="${esc(t)}" checked> ${esc(t)}</label>`).join("");
   $("#op-area").addEventListener("click", e => { const b = e.target.closest("button"); if (b) { F.area = JSON.parse(b.dataset.area); atualizar(); } });
   $("#op-valor").addEventListener("click", e => { const b = e.target.closest("button"); if (b) { F.valMax = b.dataset.valor === "" ? null : Number(b.dataset.valor); atualizar(); } });
-  $("#op-trans").addEventListener("click", e => {
-    const b = e.target.closest("button");
-    if (!b) return;
-    const t = b.dataset.trans;
-    if (F.trans.has(t)) F.trans.delete(t); else F.trans.add(t);
-    atualizar();
-  });
 
   const marcarBairros = marcados => {
     F.bairros = new Set(marcados);
@@ -1096,24 +1232,28 @@ function montarFiltros() {
     const abrir = av.hidden;
     av.hidden = !abrir;
     btn.setAttribute("aria-expanded", String(abrir));
+    if (abrir) atualizarContagemFiltros(filtrar());
+  });
+  $("#av-ok").addEventListener("click", () => {
+    av.hidden = true;
+    btn.setAttribute("aria-expanded", "false");
+    btn.scrollIntoView({ behavior: "smooth", block: "center" });
   });
 }
 function contarAvancados() {
   let n = 0;
-  if (F.trans.size > 0) n++;
   if (F.valMax != null) n++;
   if (F.area) n++;
   return n;
 }
-// limpa só os filtros avançados (área, valor até e tipo de transação); mantém bairro, datas, tipo de imóvel e endereço
+// limpa só os filtros avançados (área e valor até); mantém bairro, datas, tipo de imóvel e endereço
 function limparAvancados() {
-  F.area = null; F.valMax = null; F.trans = new Set();
+  F.area = null; F.valMax = null;
   atualizar();
 }
 // zera tipo de imóvel, transação, valor e endereço selecionado (mantém as datas)
 function limparFiltros() {
   F.tipos = new Set(TIPOS);
-  F.trans = new Set();
   F.valMax = null; F.area = null;
   F.selKey = null;
   F.rua = null;
@@ -1125,13 +1265,13 @@ const AREAS = [["Qualquer", null], ["até 50 m²", [0, 50]], ["50 a 80 m²", [50
 const VALORES = [["Sem limite", null], ["até R$ 300 mil", 300000], ["até R$ 500 mil", 500000], ["até R$ 1 mi", 1000000], ["até R$ 2 mi", 2000000], ["até R$ 5 mi", 5000000]];
 function areaOk(x) {
   const a = D.predios[x.idx].area;
-  return a != null && a >= F.area[0] && a <= F.area[1];
+  // faixas fechadas no início e abertas no fim (50 entra em "50 a 80", não em "até 50"); sem sobreposição
+  return a != null && a >= F.area[0] && (a < F.area[1] || F.area[1] >= 1e9);
 }
+function iguais(a, b) { return JSON.stringify(a) === JSON.stringify(b); }
 function renderOpcoes() {
-  const iguais = (a, b) => JSON.stringify(a) === JSON.stringify(b);
   $("#op-area").innerHTML = AREAS.map(([l, v]) => `<button type="button" data-area="${esc(JSON.stringify(v))}" aria-pressed="${iguais(F.area, v)}">${l}</button>`).join("");
   $("#op-valor").innerHTML = VALORES.map(([l, v]) => `<button type="button" data-valor="${v ?? ""}" aria-pressed="${F.valMax === v}">${l}</button>`).join("");
-  $("#op-trans").innerHTML = TRANS_TODAS.map(t => `<button type="button" data-trans="${esc(t)}" aria-pressed="${F.trans.has(t)}">${esc(t)}</button>`).join("");
 }
 function ultIni() { const s = somaMeses(MES_MAX, -11); return s < MES_MIN ? MES_MIN : s; }
 let mesPendente = null;
@@ -1173,7 +1313,6 @@ function desenharFiltros() {
     ["Período", (F.ini ? mesRotulo(F.ini) : "início") + " a " + (F.fim ? mesRotulo(F.fim) : "atual")],
     ["Bairros", rotuloBairros()],
     ["Tipo de imóvel", F.tipos.size === TIPOS.length ? "todos" : ([...F.tipos].join(", ") || "nenhum")],
-    ["Transação", F.trans.size === 0 ? "todas" : [...F.trans].join(", ")],
     ["Valor", F.valMax == null ? "sem limite" : "até " + fmt(F.valMax)],
     ["Área", F.area ? (AREAS.find(a => iguais(a[1], F.area)) || ["", ""])[0] : "qualquer"],
   ];
@@ -1190,9 +1329,17 @@ document.addEventListener("click", e => {
   fecharPrevia();
   atualizar();
 });
+// contagem ao vivo dentro do painel de filtros
+function atualizarContagemFiltros(lista) {
+  const imoveis = new Set(lista.map(x => x.idx)).size; // cada apartamento conta uma vez (o endereço do prédio pode ter vários)
+  const f = n => n.toLocaleString("pt-BR");
+  const el = $("#av-contagem");
+  if (el) el.innerHTML = `Analisando <strong>${f(imoveis)}</strong> imóveis (${f(lista.length)} transações) com estes critérios`;
+}
 function atualizar() {
   const lista = filtrar();
   ULTIMA = lista;
+  atualizarContagemFiltros(lista);
   atualizarPinos(lista);
   desenharResumo(lista);
   desenharFiltros();
@@ -1353,10 +1500,14 @@ function ordenar(lista, ordem) {
 }
 function linhaLista(t) {
   const p = D.predios[t.idx];
+  const detalhes = [p.b, t.g.ref, t.unidade].filter(x => x && x !== "Sem complemento").map(esc).join(" · ");
   return `<tr data-li="${t.idx}" data-k="${esc(t.key)}" tabindex="0">
-    <td>${esc(t.data)}</td><td class="n">${fmt(t.valor)}</td><td>${esc(t.tipoUn)}</td><td>${esc(t.tr)}</td>
-    <td class="n">${p.area != null ? p.area + " m²" : "—"}</td><td>${esc(p.b)}</td><td>${esc(t.g.rua)}</td><td>${esc(t.g.numero)}</td>
-    <td>${esc(t.g.ref || "—")}</td><td>${esc(t.unidade)}</td><td class="n">${t.m2 != null ? fmt(t.m2) : "—"}</td></tr>`;
+    <td data-label="Data">${esc(t.data)}</td>
+    <td data-label="Endereço">${esc(t.g.rua)}, ${esc(t.g.numero)}<small>${detalhes}</small></td>
+    <td data-label="Transação">${esc(t.tr)}<small>${esc(t.tipoUn)}</small></td>
+    <td class="n" data-label="Área">${p.area != null ? p.area + " m²" : "—"}</td>
+    <td class="n" data-label="Valor">${fmt(t.valor)}</td>
+    <td class="n" data-label="R$/m²">${t.m2 != null ? fmt(t.m2) : "—"}</td></tr>`;
 }
 function renderLista() {
   const corpo = $("#lista-corpo"), titulo = $("#lista-tit"), acoes = $("#lista-acoes");
@@ -1377,7 +1528,7 @@ function renderLista() {
   acoes.hidden = false;
   titulo.textContent = total > 100 ? `Transações (100 mais recentes de ${total.toLocaleString("pt-BR")})` : `Transações (${total.toLocaleString("pt-BR")})`;
   corpo.innerHTML = total ? `<div class="tab-wrap"><table class="tab-lista">
-    <thead><tr><th>Data</th><th class="n">Valor</th><th>Tipo de imóvel</th><th>Tipo de transação</th><th class="n">Área</th><th>Bairro</th><th>Rua</th><th>Número</th><th>Edifício</th><th>Unidade</th><th class="n">R$/m²</th></tr></thead>
+    <thead><tr><th>Data</th><th>Endereço</th><th>Transação</th><th class="n">Área</th><th class="n">Valor</th><th class="n">R$/m²</th></tr></thead>
     <tbody>${LISTA.itens.map(linhaLista).join("")}</tbody></table></div>
     ${total > 100 ? `<p class="nota limite-aviso">Esta lista mostra até 100 transações, as mais recentes. Para mais dados, use o botão Solicitar dados.</p>` : ""}`
     : `<p class="nota">Nenhuma transação com os filtros atuais.</p>`;
@@ -1430,6 +1581,125 @@ $("#info-atual").textContent = D.bairro.fim;
 $("#info-n").textContent = (() => { const n = FLAT.length; return n >= 1000 ? `mais de ${Math.floor(n / 1000)} mil` : `mais de ${Math.floor(n / 100) * 100}`; })();
 if (PINS.length) ajustar(PINS);
 atualizar();
+
+// variação de imóveis retomados
+function pctTxt(v) { return (v > 0 ? "+" : "") + v.toLocaleString("pt-BR", { maximumFractionDigits: 1 }) + "%"; }
+function rotuloTx(t, i) { return i === 2 ? t.tipo + " (valorização)" : t.tipo; }
+function diasEntre(a, b) {
+  const p = s => { const [d, m, y] = s.split("/").map(Number); return Date.UTC(y, m - 1, d); };
+  return Math.round((p(b) - p(a)) / 86400000);
+}
+function tempoTxt(dias) {
+  if (dias <= 0) return "no mesmo dia";
+  if (dias < 45) return dias + (dias === 1 ? " dia" : " dias");
+  const m = Math.round(dias / 30.44);
+  return m + (m === 1 ? " mês" : " meses");
+}
+function valorCurto(v) {
+  if (v >= 1e6) return "R$ " + (v / 1e6).toLocaleString("pt-BR", { maximumFractionDigits: 2 }) + " mi";
+  return "R$ " + Math.round(v / 1e3).toLocaleString("pt-BR") + " mil";
+}
+function graficoVariacao(trans) {
+  const W = 300, H = 110, pl = 16, pr = 16, pt = 18, pb = 26;
+  const vals = trans.map(t => t.valor), lo = Math.min(...vals), hi = Math.max(...vals);
+  const pad = (hi - lo) * 0.15 || hi * 0.1 || 1, a = lo - pad, b = hi + pad;
+  const x = i => trans.length === 1 ? (pl + W - pr) / 2 : pl + i * (W - pl - pr) / (trans.length - 1);
+  const y = v => pt + (1 - (v - a) / (b - a)) * (H - pt - pb);
+  const pts = trans.map((t, i) => `${x(i).toFixed(1)},${y(t.valor).toFixed(1)}`).join(" ");
+  const ancora = i => i === 0 ? "start" : i === trans.length - 1 ? "end" : "middle";
+  const bolinhas = trans.map((t, i) => `<circle class="pt" cx="${x(i).toFixed(1)}" cy="${y(t.valor).toFixed(1)}" r="4"/>
+      <text x="${x(i).toFixed(1)}" y="${(y(t.valor) - 8).toFixed(1)}" text-anchor="${ancora(i)}">${valorCurto(t.valor)}</text>
+      <text x="${x(i).toFixed(1)}" y="${H - 6}" text-anchor="${ancora(i)}">${esc(t.data.slice(3))}</text>`).join("");
+  return `<svg class="var-graf" viewBox="0 0 ${W} ${H}" role="img" aria-label="Valor total do imóvel em cada transação"><polyline class="ln" points="${pts}"/>${bolinhas}</svg>`;
+}
+const VAR_POR_PAGINA = 9;
+let VAR_PAG = 1;
+function numerosPagina(atual, total) {
+  const s = new Set([1, total, atual - 1, atual, atual + 1]);
+  const l = [...s].filter(n => n >= 1 && n <= total).sort((a, b) => a - b), out = [];
+  l.forEach((n, i) => { if (i && n - l[i - 1] > 1) out.push(null); out.push(n); });
+  return out;
+}
+function desenharVariacao(pag) {
+  if (pag != null) VAR_PAG = pag;
+  const q = norm($("#var-busca").value.trim());
+  const termos = termosBusca(q);
+  const lista = VARIACAO.filter(v => !termos.length || casaBusca(v, termos));
+  const m2 = medianaArr(lista.map(v => v.var_leilao));
+  const totalPag = Math.max(1, Math.ceil(lista.length / VAR_POR_PAGINA));
+  VAR_PAG = Math.min(Math.max(1, VAR_PAG), totalPag);
+  const ini = (VAR_PAG - 1) * VAR_POR_PAGINA, fim = Math.min(ini + VAR_POR_PAGINA, lista.length);
+  const disp = n => n.toLocaleString("pt-BR");
+  $("#var-contagem").textContent = lista.length
+    ? (q ? disp(lista.length) + " de " + disp(VARIACAO.length) + " imóveis disponíveis" : disp(VARIACAO.length) + " imóveis disponíveis") + " · mostrando " + disp(ini + 1) + " a " + disp(fim)
+    : "Nenhum imóvel encontrado para essa busca";
+  $("#var-resumo").innerHTML = `
+    <div><div class="l">Valorização mediana: 2ª venda contra a arrematação ou compra do banco</div><div class="v acento">${m2 == null ? "—" : pctTxt(m2)}</div></div>`;
+  $("#var-lista").innerHTML = lista.slice(ini, fim).map(v => {
+    const end = `${v.rua}, ${v.numero}` + (v.complemento ? " · " + v.complemento : "");
+    const bx = v.bairro ? esc(v.bairro.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())) : "";
+    return `<article class="var-item">
+      <h3>${esc(end)}</h3>
+      <div class="sub">${bx}</div>
+      <div class="var-badges">
+        <span class="${v.var_retomada >= 0 ? "pos" : "neg"}">vs retomada ${pctTxt(v.var_retomada)}</span>
+        <span class="${v.var_leilao >= 0 ? "pos" : "neg"}">vs 1º leilão ${pctTxt(v.var_leilao)}</span>
+        <span class="tempo" title="Tempo entre a compra em leilão e a venda seguinte">leilão → venda: ${tempoTxt(diasEntre(v.transacoes[1].data, v.transacoes[2].data))}</span>
+      </div>
+      ${graficoVariacao(v.transacoes)}
+      <div class="sub">${v.transacoes.map((t, i) => `${esc(rotuloTx(t, i))}: ${fmt(t.valor)} (${t.m2.toLocaleString("pt-BR")}/m²)`).join(" · ")}</div>
+    </article>`;
+  }).join("");
+  $("#var-pag-info").textContent = totalPag > 1 ? `Página ${VAR_PAG} de ${totalPag}` : "";
+  $("#var-pag").innerHTML = totalPag > 1
+    ? `<button type="button" data-p="${VAR_PAG - 1}" ${VAR_PAG === 1 ? "disabled" : ""} aria-label="Página anterior">‹ Anterior</button>`
+      + numerosPagina(VAR_PAG, totalPag).map(n => n == null ? `<span class="retic">…</span>` : `<button type="button" data-p="${n}" ${n === VAR_PAG ? 'aria-current="page"' : ""} aria-label="Página ${n}">${n}</button>`).join("")
+      + `<button type="button" data-p="${VAR_PAG + 1}" ${VAR_PAG === totalPag ? "disabled" : ""} aria-label="Próxima página">Próxima ›</button>`
+    : "";
+}
+$("#var-pag").addEventListener("click", e => {
+  const b = e.target.closest("button[data-p]"); if (!b || b.disabled) return;
+  desenharVariacao(Number(b.dataset.p));
+  $("#var-corpo").scrollTo({ top: 0, behavior: "smooth" });
+});
+function casaBusca(v, termos) { const hay = norm([v.bairro, v.rua, v.numero, v.complemento].join(" ")); return termos.every(t => hay.includes(t)); }
+function termosBusca(q) { return norm(q).split(/[^a-z0-9]+/).filter(Boolean); }
+function rotuloEndereco(v) { return `${v.rua}, ${v.numero}` + (v.complemento ? " · " + v.complemento : ""); }
+let VAR_HITS = [];
+function sugestoesVariacao() {
+  const q = norm($("#var-busca").value.trim()), ul = $("#var-sugs");
+  const termos = termosBusca(q);
+  VAR_HITS = q.length < 2 ? [] : VARIACAO.filter(v => casaBusca(v, termos)).slice(0, 8);
+  if (!VAR_HITS.length) { ul.hidden = true; ul.innerHTML = ""; return; }
+  ul.innerHTML = VAR_HITS.map((v, i) => `<li tabindex="0" data-i="${i}"><b>${esc(rotuloEndereco(v))}</b><small>${esc(v.bairro.toLowerCase().replace(/\b\w/g, c => c.toUpperCase()))}</small></li>`).join("");
+  ul.hidden = false;
+}
+$("#var-busca").addEventListener("input", () => { sugestoesVariacao(); if (!$("#variacao-box").hidden) desenharVariacao(1); });
+$("#var-busca").addEventListener("blur", () => setTimeout(() => { $("#var-sugs").hidden = true; }, 150));
+$("#var-sugs").addEventListener("mousedown", e => {
+  const li = e.target.closest("li"); if (!li) return;
+  e.preventDefault();
+  const v = VAR_HITS[Number(li.dataset.i)];
+  $("#var-busca").value = rotuloEndereco(v);
+  $("#var-sugs").hidden = true;
+  desenharVariacao(1);
+});
+function abrirVariacao() {
+  $("#variacao-box").hidden = false;
+  $("#btn-var").setAttribute("aria-expanded", "true");
+  document.body.style.overflow = "hidden";
+  desenharVariacao(1);
+  $("#var-corpo").scrollTop = 0;
+}
+function fecharVariacao() {
+  $("#variacao-box").hidden = true;
+  $("#btn-var").setAttribute("aria-expanded", "false");
+  document.body.style.overflow = "";
+}
+$("#btn-var").addEventListener("click", abrirVariacao);
+$("#fechar-var").addEventListener("click", fecharVariacao);
+$("#variacao-box").addEventListener("mousedown", e => { if (e.target.id === "variacao-box") fecharVariacao(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#variacao-box").hidden) fecharVariacao(); });
 </script>
 
 <footer class="rodape">
@@ -1439,7 +1709,7 @@ atualizar();
     </div>
     <div class="rodape-base">
       <span>© 2026 ITBI SP. Todos os direitos reservados.</span>
-      <span>Dados consultados em: 02/01/2025 a 07/09/2026</span>
+      <span>Dados consultados em: 01/01/2025 a 07/09/2026</span>
     </div>
   </div>
 </footer>
