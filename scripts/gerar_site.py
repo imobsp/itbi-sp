@@ -22,8 +22,8 @@ DADOS = RAIZ / "dados"
 SITE = RAIZ / "site"
 
 RELEASES = {
-    "2025": "https://github.com/jlgrego/itbi-sp/releases/download/dados-2025/itbi_2025.xlsx",
-    "2026": "https://github.com/jlgrego/itbi-sp/releases/download/dados-2026/itbi_2026.xlsx",
+    "2025": "https://github.com/imobsp/itbi-sp/releases/download/dados-2025/itbi_2025.xlsx",
+    "2026": "https://github.com/imobsp/itbi-sp/releases/download/dados-2026/itbi_2026.xlsx",
 }
 
 MIN_TRANSACOES = 30  # bairros com menos registros não ganham página
